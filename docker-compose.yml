@@ -28,8 +28,9 @@ services:
        - laraveldev_net
      restart: always
      volumes:
-       - ./mysql:/var/lib/mysql
        - ./data:/root
+       - ./mysql/initdb/:/docker-entrypoint-initdb.d
+     #Fix docker-toolbox error
      command: --innodb_use_native_aio=0
 
    laravel-phpmyadmin:
