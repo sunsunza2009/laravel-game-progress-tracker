@@ -24,6 +24,87 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `laravel` /*!40100 DEFAULT CHARACTER SE
 USE `laravel`;
 
 --
+-- Table structure for table `chapters`
+--
+
+DROP TABLE IF EXISTS `chapters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `chapters` (
+  `chapter_id` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `game_id` int(11) NOT NULL,
+  PRIMARY KEY (`chapter_id`,`game_id`),
+  KEY `fk_chapter_Game1_idx` (`game_id`),
+  CONSTRAINT `fk_chapter_Game1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chapters`
+--
+
+LOCK TABLES `chapters` WRITE;
+/*!40000 ALTER TABLE `chapters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chapters` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `games`
+--
+
+DROP TABLE IF EXISTS `games`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `games` (
+  `game_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `rating` float DEFAULT NULL,
+  `platform` varchar(100) DEFAULT NULL,
+  `detail` text,
+  `genre` varchar(100) DEFAULT NULL,
+  `developer` varchar(100) DEFAULT NULL,
+  `poster_url` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`game_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `games`
+--
+
+LOCK TABLES `games` WRITE;
+/*!40000 ALTER TABLE `games` DISABLE KEYS */;
+/*!40000 ALTER TABLE `games` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `image`
+--
+
+DROP TABLE IF EXISTS `image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `image` (
+  `img_id` int(11) NOT NULL,
+  `url` varchar(100) DEFAULT NULL,
+  `game_id` int(11) NOT NULL,
+  PRIMARY KEY (`img_id`,`game_id`),
+  KEY `fk_image_games1_idx` (`game_id`),
+  CONSTRAINT `fk_image_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `image`
+--
+
+LOCK TABLES `image` WRITE;
+/*!40000 ALTER TABLE `image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -69,7 +150,67 @@ CREATE TABLE `password_resets` (
 
 LOCK TABLES `password_resets` WRITE;
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+INSERT INTO `password_resets` VALUES ('admin@zugetor.com','$2y$10$T4B7KiwAutItrKxgKpnalebD45jO8zHhIRgX4tq7XS51FbnM65LFW','2019-04-27 06:52:58');
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `players`
+--
+
+DROP TABLE IF EXISTS `players`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `players` (
+  `player_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `gender` enum('M','F') DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `photo` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `players`
+--
+
+LOCK TABLES `players` WRITE;
+/*!40000 ALTER TABLE `players` DISABLE KEYS */;
+/*!40000 ALTER TABLE `players` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `progress`
+--
+
+DROP TABLE IF EXISTS `progress`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `progress` (
+  `progress_id` int(11) NOT NULL,
+  `player_id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `progress_time` int(11) DEFAULT NULL,
+  `last_play_time` datetime DEFAULT NULL,
+  `progress_percent` int(11) DEFAULT NULL,
+  PRIMARY KEY (`progress_id`,`player_id`,`chapter_id`,`game_id`),
+  KEY `fk_progress_player1_idx` (`player_id`),
+  KEY `fk_progress_chapters1_idx` (`chapter_id`,`game_id`),
+  CONSTRAINT `fk_progress_chapters1` FOREIGN KEY (`chapter_id`, `game_id`) REFERENCES `chapters` (`chapter_id`, `game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_progress_player1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `progress`
+--
+
+LOCK TABLES `progress` WRITE;
+/*!40000 ALTER TABLE `progress` DISABLE KEYS */;
+/*!40000 ALTER TABLE `progress` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -90,7 +231,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (2,'admin','admin@zugetor.com',NULL,'$2y$10$JMO.QECdPDXA7OHGj/62TexguuWr5ZET7on.gOhAw5HahgeA1SG0W',NULL,'2019-04-27 06:54:21','2019-04-27 06:54:21');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-25  9:46:55
+-- Dump completed on 2019-04-27  7:47:10
