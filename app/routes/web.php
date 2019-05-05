@@ -24,7 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 //Route for admin
 Route::group(['prefix' => 'admin'], function(){
-    Route::group(['middleware' => ['admin']], function(){
-        Route::get('/dashboard', 'admin\AdminController@index');
+    Route::group(['middleware' => ['admin']], function(){        
+		Route::get('/dashboard', function () {
+			return view('admin/dashboard');
+		});
     });
 });
