@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\player;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'gender' => ['required'],
         ]);
     }
 
@@ -63,11 +65,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+		$user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
 			'type' => User::DEFAULT_TYPE,
         ]);
+        player::create([
+			'player_id' => $user->id,
+			'name' => $data['name'],
+			'gender' => $data['gender'],
+			'birth_date' => "2019-05-01",
+			'email' => $data['email'],
+			'photo' => ""
+		]);
+		return $user;
     }
 }

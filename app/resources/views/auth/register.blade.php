@@ -51,13 +51,34 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>											
 
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+						
+						<div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="gender" id="gender" value="M" required>
+									<label class="form-check-label" for="gender">Male</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="gender" id="gender" value="F" required>
+									<label class="form-check-label" for="gender">Female</label>
+								</div>
+
+                                @if ($errors->has('gender'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

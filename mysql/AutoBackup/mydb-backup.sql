@@ -150,7 +150,6 @@ CREATE TABLE `password_resets` (
 
 LOCK TABLES `password_resets` WRITE;
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
-INSERT INTO `password_resets` VALUES ('admin@zugetor.com','$2y$10$T4B7KiwAutItrKxgKpnalebD45jO8zHhIRgX4tq7XS51FbnM65LFW','2019-04-27 06:52:58');
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,6 +228,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -240,7 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'admin','admin@zugetor.com',NULL,'$2y$10$JMO.QECdPDXA7OHGj/62TexguuWr5ZET7on.gOhAw5HahgeA1SG0W',NULL,'2019-04-27 06:54:21','2019-04-27 06:54:21');
+INSERT INTO `users` VALUES (1,'admin','admin@zugetor.com',NULL,'$2y$10$42o2W5P0r3Lmb/UGzbhMdOZL4ebDPy.Mefng6wyKyPbwEmMs65cQ2',NULL,'2019-05-05 14:03:38','2019-05-05 14:03:38',1),(2,'user','user@user.com',NULL,'$2y$10$K9ATKYZ7R7IQG4i8FgZ3deA1igmYTzUD.ji8Er0lfAJUG7W6dvgA2',NULL,'2019-05-05 14:10:00','2019-05-05 14:10:00',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-27  7:59:11
+-- Dump completed on 2019-05-05 14:14:02

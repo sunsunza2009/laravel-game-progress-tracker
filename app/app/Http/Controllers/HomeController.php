@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
@@ -23,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->isAdmin()) {
+        if(auth()->user()->isAdmin()) {			
 			return redirect('admin/dashboard');
 		} else {
 			return view('home');
