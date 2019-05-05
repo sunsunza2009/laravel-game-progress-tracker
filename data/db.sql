@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`chapters` (
   `name` VARCHAR(45) NULL,
   `game_id` INT NOT NULL,
   PRIMARY KEY (`chapter_id`, `game_id`),
-  INDEX `fk_chapter_Game1_idx` (`game_id` ASC) VISIBLE,
+  INDEX `fk_chapter_Game1_idx` (`game_id` ASC),
   CONSTRAINT `fk_chapter_Game1`
     FOREIGN KEY (`game_id`)
     REFERENCES `laravel`.`games` (`game_id`)
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `laravel`.`progress` (
   `last_play_time` DATETIME NULL,
   `progress_percent` INT NULL,
   PRIMARY KEY (`progress_id`, `player_id`, `chapter_id`, `game_id`),
-  INDEX `fk_progress_player1_idx` (`player_id` ASC) VISIBLE,
-  INDEX `fk_progress_chapters1_idx` (`chapter_id` ASC, `game_id` ASC) VISIBLE,
+  INDEX `fk_progress_player1_idx` (`player_id` ASC),
+  INDEX `fk_progress_chapters1_idx` (`chapter_id` ASC, `game_id` ASC),
   CONSTRAINT `fk_progress_player1`
     FOREIGN KEY (`player_id`)
     REFERENCES `laravel`.`players` (`player_id`)
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`image` (
   `url` VARCHAR(100) NULL,
   `game_id` INT NOT NULL,
   PRIMARY KEY (`img_id`, `game_id`),
-  INDEX `fk_image_games1_idx` (`game_id` ASC) VISIBLE,
+  INDEX `fk_image_games1_idx` (`game_id` ASC),
   CONSTRAINT `fk_image_games1`
     FOREIGN KEY (`game_id`)
     REFERENCES `laravel`.`games` (`game_id`)
