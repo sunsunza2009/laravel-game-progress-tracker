@@ -10,35 +10,35 @@
 				<form method="post" action="{{ route('game.store') }}" >
 				{{ csrf_field() }}
 				<div class="form-group">
-				<label for="ACC_No">ชื่อ</label>
+				<label for="ACC_No">name</label>
 				<input type="text" name="name" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>เรทติ้ง</label>
+				<label>rating</label>
 				<input type="number" step="0.01" name="rating" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>แพลทฟอร์ม</label>
+				<label>platform</label>
 				<input type="text" name="platform" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>รายละเอียด</label>
+				<label>detail</label>
 				<input type="text" name="detail" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>ประเภท</label>
+				<label>genre</label>
 				<input type="text" name="genre" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>บริษัทผู้พัฒนา</label>
+				<label>developer</label>
 				<input type="text" name="developer" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>รูปภาพ</label>
+				<label>picture</label>
 				<input type="text" name="poster_url" class="form-control">
 				</div>
 				<div> 
-				<button type="submit" class="btn btn-default">เพิ่ม</button>
+				<button type="submit" class="btn btn-default">add game</button>
 				</form>
                 </div>
             </div>
