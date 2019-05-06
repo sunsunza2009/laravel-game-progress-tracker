@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: laravel
 -- ------------------------------------------------------
--- Server version	5.7.25
+-- Server version	5.7.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `chapters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chapters` (
-  `chapter_id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `game_id` int(11) NOT NULL,
   PRIMARY KEY (`chapter_id`,`game_id`),
@@ -50,6 +50,34 @@ LOCK TABLES `chapters` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `favorite`
+--
+
+DROP TABLE IF EXISTS `favorite`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `favorite` (
+  `fav_id` int(11) NOT NULL AUTO_INCREMENT,
+  `player_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  PRIMARY KEY (`fav_id`,`player_id`,`game_id`),
+  KEY `fk_favorite_players1_idx` (`player_id`),
+  KEY `fk_favorite_games1_idx` (`game_id`),
+  CONSTRAINT `fk_favorite_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_favorite_players1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `favorite`
+--
+
+LOCK TABLES `favorite` WRITE;
+/*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
+/*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `games`
 --
 
@@ -57,7 +85,7 @@ DROP TABLE IF EXISTS `games`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `games` (
-  `game_id` int(11) NOT NULL,
+  `game_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `rating` float DEFAULT NULL,
   `platform` varchar(100) DEFAULT NULL,
@@ -66,7 +94,7 @@ CREATE TABLE `games` (
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +103,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
+INSERT INTO `games` VALUES (1,'bioshock 8',9.99,'playstation 5','this game is the best bioshock they ever made!!! it\'s master piece!!!','Action,Horror,RPG','2k games','x'),(2,'bioshock 9',10,'playstation 5','this game is the best bioshock they ever made!!! it\'s master piece!!!','Action,Horror,RPG','2k games','x');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +115,7 @@ DROP TABLE IF EXISTS `image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `image` (
-  `img_id` int(11) NOT NULL,
+  `img_id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(100) DEFAULT NULL,
   `game_id` int(11) NOT NULL,
   PRIMARY KEY (`img_id`,`game_id`),
@@ -161,14 +190,16 @@ DROP TABLE IF EXISTS `players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `players` (
-  `player_id` int(11) NOT NULL,
+  `player_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `gender` enum('M','F') DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `photo` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`player_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,6 +208,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
+INSERT INTO `players` VALUES (5,'test','F','2019-05-01','test@test.com','','2019-05-05 16:06:55','2019-05-05 16:06:55'),(6,'user','M','2019-05-01','user@user.com','','2019-05-06 07:35:12','2019-05-06 07:35:12');
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +220,7 @@ DROP TABLE IF EXISTS `progress`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `progress` (
-  `progress_id` int(11) NOT NULL,
+  `progress_id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
@@ -231,7 +263,7 @@ CREATE TABLE `users` (
   `type` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +272,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@zugetor.com',NULL,'$2y$10$42o2W5P0r3Lmb/UGzbhMdOZL4ebDPy.Mefng6wyKyPbwEmMs65cQ2',NULL,'2019-05-05 14:03:38','2019-05-05 14:03:38',1),(2,'user','user@user.com',NULL,'$2y$10$K9ATKYZ7R7IQG4i8FgZ3deA1igmYTzUD.ji8Er0lfAJUG7W6dvgA2',NULL,'2019-05-05 14:10:00','2019-05-05 14:10:00',0);
+INSERT INTO `users` VALUES (1,'admin','admin@zugetor.com',NULL,'$2y$10$42o2W5P0r3Lmb/UGzbhMdOZL4ebDPy.Mefng6wyKyPbwEmMs65cQ2',NULL,'2019-05-05 14:03:38','2019-05-05 14:03:38',1),(5,'test','test@test.com',NULL,'$2y$10$eUlW3GFEsYdxZMEGnS82IONRHfjEGfNZIIRhvCkpdPn1q3eUIkqq2',NULL,'2019-05-05 16:06:55','2019-05-05 16:06:55',0),(6,'user','user@user.com',NULL,'$2y$10$JfumNVGgyv5P6JIJbx00BeFpggEwmbW4/.T1E.X7Wv04HZO5XrpKa',NULL,'2019-05-06 07:35:11','2019-05-06 07:35:11',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-05 14:14:02
+-- Dump completed on 2019-05-06  9:44:19
