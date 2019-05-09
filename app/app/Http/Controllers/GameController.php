@@ -38,7 +38,7 @@ class GameController extends Controller
     {
        $request->validate(
 		[
-			'name' => 'required|max:10',
+			'name' => 'required|max:99',
 			'rating' => 'required',
 			'platform' => 'required|max:100',
 			'detail' => 'required|max:200',
@@ -51,11 +51,13 @@ class GameController extends Controller
         $game = new Game;
 		$game->name = $request->get('name');
 		$game->rating = $request->get('rating');
-		$game->platform = $request->get('platform');
+		$tmp_platform = $request->input('platform');
 		$game->detail = $request->get('detail');
-		$game->genre = $request->get('genre');
+		$tmp_genre = $request->input('genre');
 		$game->developer = $request->get('developer');
 		$game->poster_url = $request->get('poster_url');
+		$game->platform = implode(",",$tmp_platform);
+		$game->genre = implode(",",$tmp_genre);
 		$game->save();
 		return redirect('game');
     }
@@ -80,7 +82,31 @@ class GameController extends Controller
     public function edit($id)
     {
         $game = Game::where('game_id', $id)->first();
-		return view('game.edit',compact('game'));
+		$tmp_platform = explode(',', $game->platform);
+		$tmp_genre = explode(',', $game->genre);
+		$game->platform = $tmp_platform;
+		$game->genre = $tmp_genre;
+		$platform = array("PC","PS1","PS2","PS3","PS4","XBOX One","XBOX 360","Nintendo Switch","Nintendo 3DS");
+		$genre = array("RPG","Shooter","Action","Fighting","Adventure","Sports","Racing","Strategy","Mucsic&Rhythm","Puzzle","Board Games","Arcade","Unique");
+		$checkplatform = array("","","","","","","","","");
+		$checkgenre = array("","","","","","","","","","","","","");
+		for($i=0;$i<count($game->platform);$i++){
+			for($j=0;$j<count($platform);$j++){
+				if($game->platform[$i]==$platform[$j]){
+					$checkplatform[$j] = "checked";
+				}
+		}
+		}
+		
+		for($i=0;$i<count($game->genre);$i++){
+			for($j=0;$j<count($genre);$j++){
+				if($game->genre[$i]==$genre[$j]){
+					$checkgenre[$j] = "checked";
+				}
+		}
+		}
+		
+		return view('game.edit',compact('game','checkplatform','checkgenre','platform','genre'));
     }
 
     /**
@@ -94,7 +120,7 @@ class GameController extends Controller
     {
         $request->validate(
 		[
-			'name' => 'required|max:10',
+			'name' => 'required|max:99',
 			'rating' => 'required',
 			'platform' => 'required|max:100',
 			'detail' => 'required|max:200',
@@ -106,10 +132,12 @@ class GameController extends Controller
         $game = Game::where('game_id', $id)->first();
 		$game->name = $request->get('name');
 		$game->rating = $request->get('rating');
-		$game->platform = $request->get('platform');
+		$tmp_platform = $request->input('platform');
 		$game->detail = $request->get('detail');
-		$game->genre = $request->get('genre');
+		$tmp_genre = $request->input('genre');
 		$game->developer = $request->get('developer');
+		$game->platform = implode(",",$tmp_platform);
+		$game->genre = implode(",",$tmp_genre);
 		Game::where('game_id', $id)
 		->update(['name' => $game->name,'rating' => $game->rating,'platform' => $game->platform,'detail' => $game->detail,'genre' => $game->genre,'developer' => $game->developer]);
 		return redirect('game');
@@ -126,4 +154,21 @@ class GameController extends Controller
 		Game::where('game_id', $id)->delete();
 		return redirect('game');
     }
+	
+	public function search(Request $request)
+    {
+        $input = $request->search;
+        if ($input != ''){  //ถ้าใส่ข้อมูล
+            $game =  Game::where('name','LIKE','%'.$input.'%')->get();
+        }else { //ถ้าไม่ได้ใส่ข้อมูล
+            $game = Game::all();
+        }
+		
+        if ($game->count() > 0){ //ค้นแล้วมีข้อมูล
+            return view('game.index',compact('game'));
+        }else { //ค้นแล้วไม่มีข้อมูล
+            return back()->with('error','Not Found!'); //ส่งข้อความไป ในหมวด error
+        }
+    }
+
 }

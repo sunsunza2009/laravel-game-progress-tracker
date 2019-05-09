@@ -3,20 +3,31 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-offset-1">
             <div class="panel panel-default">
+            <form action="{{ url('search') }}" method="get">
+            <div class="input- group mb-2">
+                <input type="text" class="form-control" placeholder="Search game" name="search" id="search">
+                <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search">search</i>
+                    </button>
+            </div>
+</form>
+
 			<div>
 				<a href="{{ route('game.create') }}" class="btn btn-success">Add game</a>
 			</div>
                 <div class="panel-heading">
-<table class="table table-dark">
+      
+                <div class="table-responsive-lg">
+<table class="table">
   <thead>
     <tr>
       <th scope="col">id</th>
       <th scope="col">Name</th>
       <th scope="col">rating</th>
       <th scope="col">platform</th>
-	  <th scope="col" colspan="3">detail</th>
+	  <th scope="col align-center"><center>detail</center></th>
 	  <th scope="col">genre</th>
 	  <th scope="col">developer</th>
 	  <th scope="col" colspan="2"><center>operation</center></th>
@@ -30,7 +41,7 @@
       <td>{{ $row->name }}</td>
       <td>{{ $row->rating }}</td>
       <td>{{ $row->platform }}</td>
-	  <td colspan="3">{{ $row->detail }}</td>
+	  <td>{{ $row->detail }}</td>
 	    <td>{{ $row->genre }}</td>
 	  <td>{{ $row->developer }}</td>
 	 <td><a href="{{ route('game.edit',$row->game_id) }}" class="btn btn-warning">edit</a></td>
@@ -45,6 +56,7 @@
   </tbody>
   @endforeach
 </table>
+</div>
                 </div>
             </div>
         </div>

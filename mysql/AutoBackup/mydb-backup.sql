@@ -103,7 +103,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'bioshock 8',9.99,'playstation 5','this game is the best bioshock they ever made!!! it\'s master piece!!!','Action,Horror,RPG','2k games','x'),(2,'bioshock 9',10,'playstation 5','this game is the best bioshock they ever made!!! it\'s master piece!!!','Action,Horror,RPG','2k games','x');
+INSERT INTO `games` VALUES (1,'bioshock 1',9.99,'pc','this game is the best bioshock they ever made!!! it\'s master piece!!!','Action,Horror,RPG','2k games','x');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-06  9:44:19
+-- Dump completed on 2019-05-06 15:25:51

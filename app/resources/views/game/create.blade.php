@@ -15,11 +15,22 @@
 				</div>
 				<div class="form-group">
 				<label>rating</label>
-				<input type="number" step="0.01" name="rating" class="form-control">
+				<input type="number" step="1" name="rating"  min="0" max="10" class="form-control">
 				</div>
 				<div class="form-group">
 				<label>platform</label>
-				<input type="text" name="platform" class="form-control">
+				<div>
+                            
+                            <label class="checkbox-inline"><input type="checkbox" name="platform[]" value="PC">PC</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="platform[]" value="PS1">PS1</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="PS2">PS2</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="PS3">PS3</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="PS4">PS4</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="XBOX One">XBOX One</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="XBOX 360">XBOX360</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="Nintendo Switch">Nintendo Switch</label>
+							<label class="checkbox-inline"><input type="checkbox" name="platform[]" value="Nintendo 3DS">Nintendo 3DS</label>
+							</div>
 				</div>
 				<div class="form-group">
 				<label>detail</label>
@@ -27,7 +38,21 @@
 				</div>
 				<div class="form-group">
 				<label>genre</label>
-				<input type="text" name="genre" class="form-control">
+				<div>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="RPG">RPG</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Shooter">Shooter</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Action">Action</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Fighting">Fighting</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Adventure">Adventure</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Sports">Sports</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Racing">Racing</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Strategy">Strategy</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Mucsic/Rhythm">Music/Rhythm</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Puzzle">Puzzle</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Board Games">Board Games</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Arcade">Arcade</label>
+							<label class="checkbox-inline"><input type="checkbox" name="genre[]" value="Unique">Unique</label>
+							</div>
 				</div>
 				<div class="form-group">
 				<label>developer</label>

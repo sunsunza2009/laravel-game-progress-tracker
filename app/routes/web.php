@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('game','GameController');
+Route::get('search', 'GameController@search');
 
 Auth::routes();
 
