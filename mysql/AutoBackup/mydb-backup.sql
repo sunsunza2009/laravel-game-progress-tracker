@@ -94,7 +94,7 @@ CREATE TABLE `games` (
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'bioshock 1',9.99,'pc','this game is the best bioshock they ever made!!! it\'s master piece!!!','Action,Horror,RPG','2k games','x');
+INSERT INTO `games` VALUES (1,'bioshock 10',1,'PC,PS1','this game !!!','RPG,Shooter,Action','2k games','x'),(3,'a',1,'PS3,PS4,XBOX One','11','Shooter,Action,Fighting','11','11'),(4,'stardew x',10,'PC,PS4,Nintendo Switch','plant a tree','RPG','genji shimada','x');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-06 15:25:51
+-- Dump completed on 2019-05-09 13:38:12
