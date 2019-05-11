@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Chapters;
 
 class ChapterController extends Controller
 {
@@ -13,7 +14,8 @@ class ChapterController extends Controller
      */
     public function index()
     {
-        //
+       $chapters = Chapters::all();
+       return view('admin.chapters.index',compact('chapters'));
     }
 
     /**
@@ -34,7 +36,17 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+		[
+			'name' => 'required'
+		]
+		);
+		
+		$chapters = new Chapters;
+		$chapters->name = $request->get('name');
+		$chapters->game_id = '1';
+		$chapters->save();
+		return redirect('/admin/chapters');
     }
 
     /**
@@ -56,7 +68,8 @@ class ChapterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chapters = Chapters::where('chapter_id', $id)->first();
+		return view('admin.chapters.edit',compact('chapters'));
     }
 
     /**
@@ -68,7 +81,10 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $chapters = Chapters::where('chapter_id', $id)->first();
+		$chapters->name = $request->get('name');
+		Chapters::where('chapter_id', $id)->update(['name' => $chapters->name]);
+		return redirect('/admin/chapters');
     }
 
     /**
@@ -79,6 +95,7 @@ class ChapterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Chapters::where('chapter_id', $id)->delete();
+		return redirect("/admin/chapters");
     }
 }

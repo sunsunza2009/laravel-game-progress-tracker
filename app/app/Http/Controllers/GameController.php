@@ -162,16 +162,16 @@ class GameController extends Controller
 	public function search(Request $request)
     {
         $input = $request->search;
-        if ($input != ''){  //ถ้าใส่ข้อมูล
+        if ($input != ''){
             $game =  Game::where('name','LIKE','%'.$input.'%')->get();
-        }else { //ถ้าไม่ได้ใส่ข้อมูล
+        }else {
             $game = Game::all();
         }
 		
-        if ($game->count() > 0){ //ค้นแล้วมีข้อมูล
+        if ($game->count() > 0){
             return view('game.index',compact('game'));
-        }else { //ค้นแล้วไม่มีข้อมูล
-            return back()->with('error','Not Found!'); //ส่งข้อความไป ในหมวด error
+        }else {
+            return back()->with('error','Not Found!');
         }
     }
 
