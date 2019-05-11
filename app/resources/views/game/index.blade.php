@@ -33,7 +33,6 @@
 	  <th scope="col" colspan="2"><center>operation</center></th>
     </tr>
   </thead>
-  <?php $i=1; ?>
   @foreach($game as $row)
   <tbody>
     <tr>
@@ -44,6 +43,7 @@
 	  <td>{{ $row->detail }}</td>
 	    <td>{{ $row->genre }}</td>
 	  <td>{{ $row->developer }}</td>
+    
 	 <td><a href="{{ route('game.edit',$row->game_id) }}" class="btn btn-warning">edit</a></td>
 	  <td>
 		<form action="{{ route('game.destroy',$row->game_id) }}" method="post">

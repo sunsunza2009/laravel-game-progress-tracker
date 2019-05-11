@@ -45,7 +45,6 @@ class GameController extends Controller
 			'genre' => 'required',
 			'developer' => 'required',
 			'poster_url' => 'required'
-			
 		]
 		);
         $game = new Game;
@@ -55,7 +54,12 @@ class GameController extends Controller
 		$game->detail = $request->get('detail');
 		$tmp_genre = $request->input('genre');
 		$game->developer = $request->get('developer');
-		$game->poster_url = $request->get('poster_url');
+        //dd($game->poster_url);
+        if ($request->file('poster_url') == null) {
+            $game->poster_url = "";
+        }else{ 
+           $game->poster_url = $request->file('poster_url')->store('images');
+        }
 		$game->platform = implode(",",$tmp_platform);
 		$game->genre = implode(",",$tmp_genre);
 		$game->save();

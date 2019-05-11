@@ -7,7 +7,7 @@
             <div class="panel panel-default">
 			
                 <div class="panel-heading">
-				<form method="post" action="{{ route('game.store') }}" >
+				<form method="post" action="{{ route('game.store') }}" enctype="multipart/form-data">
 				{{ csrf_field() }}
 				<div class="form-group">
 				<label for="ACC_No">name</label>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="form-group">
 				<label>picture</label>
-				<input type="text" name="poster_url" class="form-control">
+				<input type="file" name="poster_url" class="form-control">
 				</div>
 				<div> 
 				<button type="submit" class="btn btn-default">add game</button>
