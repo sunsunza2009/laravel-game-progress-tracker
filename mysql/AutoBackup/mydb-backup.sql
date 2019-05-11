@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: laravel
 -- ------------------------------------------------------
--- Server version	5.7.26
+-- Server version	5.7.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,7 +37,7 @@ CREATE TABLE `chapters` (
   PRIMARY KEY (`chapter_id`,`game_id`),
   KEY `fk_chapter_Game1_idx` (`game_id`),
   CONSTRAINT `fk_chapter_Game1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `games` (
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'bioshock 10',1,'PC,PS1','this game !!!','RPG,Shooter,Action','2k games','x'),(3,'a',1,'PS3,PS4,XBOX One','11','Shooter,Action,Fighting','11','11'),(4,'stardew x',10,'PC,PS4,Nintendo Switch','plant a tree','RPG','genji shimada','x');
+INSERT INTO `games` VALUES (10,'bioshock 10',3,'XBOX 360','this game is the best bioshock they ever made!!! it\'s master piece!!!','Shooter,Action,Arcade','genji shimada','images/Flt3k4tops4W3ZM8vFUVDgBa6JP1R8LyPqeGMUI7.jpeg'),(11,'bioshock 10',2,'PS4,XBOX One','333','Shooter,Action','2k gamess','./GyF2Qr3kUvPdskWmJizwkPkQ5VUsVVDxWG5q9AIp.jpeg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +285,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-09 13:38:12
+<<<<<<< HEAD
+-- Dump completed on 2019-05-11 15:59:51
+=======
+-- Dump completed on 2019-05-11 13:54:16
+>>>>>>> 75da9d13bd4b92697997835a8d23dc1360c127df

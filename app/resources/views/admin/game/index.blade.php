@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-offset-1">
             <div class="panel panel-default">
-            <form action="{{ url('search') }}" method="get">
+            <form action="{{ url('admin/search') }}" method="get">
             <div class="input- group mb-2">
                 <input type="text" class="form-control" placeholder="Search game" name="search" id="search">
                 <button class="btn btn-primary" type="submit">
@@ -45,7 +45,8 @@
 	  <td>{{ $row->developer }}</td>
     
 	 <td><a href="{{ route('game.edit',$row->game_id) }}" class="btn btn-warning">edit</a></td>
-	  <td>
+   <td><a href="{{ route('chapters.show',$row->game_id) }}" class="btn btn-primary">add chapter</a></td>
+   <td>
 		<form action="{{ route('game.destroy',$row->game_id) }}" method="post">
 		@csrf
 		@method("DELETE")

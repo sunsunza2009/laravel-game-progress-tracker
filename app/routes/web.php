@@ -15,8 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('game','GameController');
-Route::get('search', 'GameController@search');
+
 
 Auth::routes();
 
@@ -31,6 +30,9 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/dashboard', function () {
 			return view('admin/dashboard');
 		});
-		Route::resource('chapters','ChapterController');
+        Route::resource('chapters','ChapterController');
+        Route::resource('game','GameController');
+        Route::get('search', 'GameController@search');
+        Route::get('chapters/{id}', 'ChapterController@index');
     });
 });

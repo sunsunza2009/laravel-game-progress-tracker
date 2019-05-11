@@ -13,6 +13,7 @@
 					<div class="form-group">
 						<label>Name</label>
 						<input type="text" name="name" class="form-control" value="{{ $chapters->name }}">
+						<input type="hidden" name="game_id" class="form-control" value="{{ $chapters->game_id }}">
 					</div>
 				
 					<div align="right"> 

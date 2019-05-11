@@ -12,6 +12,7 @@
 					<div class="form-group">
 						<label for="nameText">Name</label>
 						<input type="text" name="name" class="form-control">
+						<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success">Add Chapters</button>
 				</form>
@@ -32,7 +33,6 @@
 			<td>{{ $row->chapter_id }}</td>
 			<td>{{ $row->name }}</td>
 			<td>{{ $row->game_id }}</td>	
-
 			<td>
 				<form action="{{ route('chapters.destroy',$row->chapter_id) }}" method="post">	
 				<a href="{{ route('chapters.edit',$row->chapter_id) }}" class="btn btn-warning">Edit</a>

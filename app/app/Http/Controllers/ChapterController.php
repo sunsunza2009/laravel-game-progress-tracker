@@ -14,8 +14,6 @@ class ChapterController extends Controller
      */
     public function index()
     {
-       $chapters = Chapters::all();
-       return view('admin.chapters.index',compact('chapters'));
     }
 
     /**
@@ -38,15 +36,19 @@ class ChapterController extends Controller
     {
         $request->validate(
 		[
-			'name' => 'required'
+            'name' => 'required',
+            'game_id' => 'required'
 		]
 		);
 		
 		$chapters = new Chapters;
 		$chapters->name = $request->get('name');
-		$chapters->game_id = '1';
+		$chapters->game_id = $request->get('game_id');
 		$chapters->save();
-		return redirect('/admin/chapters');
+        //return redirect('admin.chapters.show',$request->get('game_id'));
+        return redirect()->action(
+            'ChapterController@show', ['id' => $request->get('game_id')]
+        );
     }
 
     /**
@@ -57,7 +59,8 @@ class ChapterController extends Controller
      */
     public function show($id)
     {
-        //
+        $chapters = Chapters::where('game_id', $id)->get();
+       return view('admin.chapters.index',compact('chapters','id'));
     }
 
     /**
@@ -84,7 +87,9 @@ class ChapterController extends Controller
         $chapters = Chapters::where('chapter_id', $id)->first();
 		$chapters->name = $request->get('name');
 		Chapters::where('chapter_id', $id)->update(['name' => $chapters->name]);
-		return redirect('/admin/chapters');
+		return redirect()->action(
+            'ChapterController@show', ['id' => $request->get('game_id')]
+        );
     }
 
     /**
@@ -95,7 +100,11 @@ class ChapterController extends Controller
      */
     public function destroy($id)
     {
+        $chapters = Chapters::where('chapter_id', $id)->first();
         Chapters::where('chapter_id', $id)->delete();
-		return redirect("/admin/chapters");
+        return redirect()->action(
+            'ChapterController@show', ['id' => $chapters->game_id]
+        );
+        
     }
 }

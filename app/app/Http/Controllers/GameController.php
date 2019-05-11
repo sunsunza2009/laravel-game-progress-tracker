@@ -15,7 +15,7 @@ class GameController extends Controller
     public function index()
     {
         $game = Game::all();
-		return view('game.index',compact('game'));
+		return view('admin.game.index',compact('game'));
     }
 
     /**
@@ -25,7 +25,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('game.create');
+        return view('admin.game.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class GameController extends Controller
 		$game->platform = implode(",",$tmp_platform);
 		$game->genre = implode(",",$tmp_genre);
 		$game->save();
-		return redirect('game');
+		return redirect('admin/game');
     }
 
     /**
@@ -110,7 +110,7 @@ class GameController extends Controller
 		}
 		}
 		
-		return view('game.edit',compact('game','checkplatform','checkgenre','platform','genre'));
+		return view('admin.game.edit',compact('game','checkplatform','checkgenre','platform','genre'));
     }
 
     /**
@@ -144,7 +144,7 @@ class GameController extends Controller
 		$game->genre = implode(",",$tmp_genre);
 		Game::where('game_id', $id)
 		->update(['name' => $game->name,'rating' => $game->rating,'platform' => $game->platform,'detail' => $game->detail,'genre' => $game->genre,'developer' => $game->developer]);
-		return redirect('game');
+		return redirect('admin/game');
     }
 
     /**
@@ -156,7 +156,7 @@ class GameController extends Controller
     public function destroy($id)
     {
 		Game::where('game_id', $id)->delete();
-		return redirect('game');
+		return redirect('admin/game');
     }
 	
 	public function search(Request $request)
@@ -169,7 +169,7 @@ class GameController extends Controller
         }
 		
         if ($game->count() > 0){
-            return view('game.index',compact('game'));
+            return view('admin.game.index',compact('game'));
         }else {
             return back()->with('error','Not Found!');
         }
