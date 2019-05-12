@@ -37,7 +37,7 @@ CREATE TABLE `chapters` (
   PRIMARY KEY (`chapter_id`,`game_id`),
   KEY `fk_chapter_Game1_idx` (`game_id`),
   CONSTRAINT `fk_chapter_Game1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,6 @@ CREATE TABLE `chapters` (
 
 LOCK TABLES `chapters` WRITE;
 /*!40000 ALTER TABLE `chapters` DISABLE KEYS */;
-INSERT INTO `chapters` VALUES (1,'x',16),(2,'aa',10),(11,'cc',10),(12,'y',16),(13,'z',16);
 /*!40000 ALTER TABLE `chapters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +94,7 @@ CREATE TABLE `games` (
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +103,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (10,'bioshock 10',6,'XBOX 360,Nintendo Switch','this game is the best bioshock they ever made!!! it\'s master piece!!!','Shooter,Action,Adventure,Racing,Arcade','genji shimadax','images/Flt3k4tops4W3ZM8vFUVDgBa6JP1R8LyPqeGMUI7.jpeg'),(16,'bioshock 8',3,'XBOX 360','11','Action,Arcade','11','images/Y0VuqVKM6WcQwU7PAnci3cU3fUYrtzOEk5iujELs.jpeg');
+INSERT INTO `games` VALUES (19,'bioshock 8',9,'PC,PS4','this game is the best bioshock they ever made!!! it\'s master piece!!!','RPG,Shooter,Board Games','2k games','images/9IESAbDc6kK5Q2FAz6GIruEyEH79DuLODR0w8j7b.jpeg'),(20,'bioshock 2555',10,'PC,PS4,XBOX One,Nintendo Switch','omg!!!','Shooter,Action','2k games','images/fimzU0TY1GqP3OKpT3hvM9JWMVq0v5rg5FJ1e0BR.jpeg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-11 18:16:43
+-- Dump completed on 2019-05-12  2:35:07

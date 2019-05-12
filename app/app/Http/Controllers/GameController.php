@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Game;
+use App\Chapters;
 
 class GameController extends Controller
 {
@@ -155,6 +156,7 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
+        Chapters::where('game_id', $id)->delete();
 		Game::where('game_id', $id)->delete();
 		return redirect('admin/game');
     }

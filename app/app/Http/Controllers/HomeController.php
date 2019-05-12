@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function index()
     {
         if(auth()->user()->isAdmin()) {			
-			return redirect('admin/dashboard');
+			return redirect('admin/game');
 		} else {
 			return view('home');
 		}
