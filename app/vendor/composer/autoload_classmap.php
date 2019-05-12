@@ -18,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\ChapterController' => $baseDir . '/app/Http/Controllers/ChapterController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FavController' => $baseDir . '/app/Http/Controllers/FavController.php',
+    'App\\Http\\Controllers\\GameApiController' => $baseDir . '/app/Http/Controllers/GameApiController.php',
     'App\\Http\\Controllers\\GameController' => $baseDir . '/app/Http/Controllers/GameController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

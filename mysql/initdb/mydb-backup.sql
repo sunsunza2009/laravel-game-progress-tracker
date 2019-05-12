@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: laravel
 -- ------------------------------------------------------
--- Server version	5.7.26
+-- Server version	5.7.25
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,7 +37,7 @@ CREATE TABLE `chapters` (
   PRIMARY KEY (`chapter_id`,`game_id`),
   KEY `fk_chapter_Game1_idx` (`game_id`),
   CONSTRAINT `fk_chapter_Game1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (19,'bioshock 8',9,'PC,PS4','this game is the best bioshock they ever made!!! it\'s master piece!!!','RPG,Shooter,Board Games','2k games','images/9IESAbDc6kK5Q2FAz6GIruEyEH79DuLODR0w8j7b.jpeg'),(20,'bioshock 2555',10,'PC,PS4,XBOX One,Nintendo Switch','omg!!!','Shooter,Action','2k games','images/fimzU0TY1GqP3OKpT3hvM9JWMVq0v5rg5FJ1e0BR.jpeg');
+INSERT INTO `games` VALUES (10,'bioshock 10',6,'PC,XBOX 360','this game is the best bioshock they ever made!!! it\'s master piece!!!','Shooter','genji shimadax','images/Flt3k4tops4W3ZM8vFUVDgBa6JP1R8LyPqeGMUI7.jpeg'),(16,'bioshock 8',3,'PC,PS1,PS2,PS3,PS4,XBOX One,XBOX 360,Nintendo Switch,Nintendo 3DS','Lorem ipsum dolor sit amet, consectetur adipiscing elit','Action,Arcade','11','images/Y0VuqVKM6WcQwU7PAnci3cU3fUYrtzOEk5iujELs.jpeg'),(20,'Overwatch',1,'PC','I Love D.va','Shooter','Blizard','/images/5cd804a1d770adva-screenshot-001.jpg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-12  2:35:07
+-- Dump completed on 2019-05-12 11:34:56

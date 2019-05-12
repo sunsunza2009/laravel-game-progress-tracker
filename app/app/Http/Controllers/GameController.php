@@ -42,7 +42,7 @@ class GameController extends Controller
 			'name' => 'required|max:99',
 			'rating' => 'required',
 			'platform' => 'required|max:100',
-			'detail' => 'required|max:200',
+			'detail' => 'required',
 			'genre' => 'required',
 			'developer' => 'required',
 			'poster_url' => 'required'
@@ -59,7 +59,9 @@ class GameController extends Controller
         if ($request->file('poster_url') == null) {
             $game->poster_url = "";
         }else{ 
-           $game->poster_url = $request->file('poster_url')->store('images');
+			$name= uniqid().$request->file('poster_url')->getClientOriginalName();
+			$request->file('poster_url')->move(public_path().'/images/', $name);
+			$game->poster_url = '/images/'.$name;
         }
 		$game->platform = implode(",",$tmp_platform);
 		$game->genre = implode(",",$tmp_genre);
@@ -128,7 +130,7 @@ class GameController extends Controller
 			'name' => 'required|max:99',
 			'rating' => 'required',
 			'platform' => 'required|max:100',
-			'detail' => 'required|max:200',
+			'detail' => 'required',
 			'genre' => 'required',
 			'developer' => 'required'
 		]

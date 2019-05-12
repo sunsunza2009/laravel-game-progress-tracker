@@ -17,6 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['sessions']], function () {
-    Route::get('/game', 'GameController@index');
-});
+/*Route::group(['middleware' => ['sessions']], function () {
+    
+});*/

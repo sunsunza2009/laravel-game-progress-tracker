@@ -372,6 +372,7 @@ class ComposerStaticInitb4a3b9cde8f5a37ee27cd16e0a753b84
         'App\\Http\\Controllers\\ChapterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChapterController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FavController' => __DIR__ . '/../..' . '/app/Http/Controllers/FavController.php',
+        'App\\Http\\Controllers\\GameApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/GameApiController.php',
         'App\\Http\\Controllers\\GameController' => __DIR__ . '/../..' . '/app/Http/Controllers/GameController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
