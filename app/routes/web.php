@@ -24,7 +24,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
 });
 
-Route::get('/api/game', 'GameApiController@index');
+Route::group(['prefix' => 'api'], function(){
+	Route::get('/fav', 'FavController@index');
+	Route::get('/fav/{id}/add', 'FavController@store');
+	Route::get('/fav/{id}/del', 'FavController@destroy');
+	Route::get('/game', 'GameApiController@game');
+});
+
+
 
 //Route for admin
 Route::group(['prefix' => 'admin'], function(){
