@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
 -- Host: localhost    Database: laravel
 -- ------------------------------------------------------
--- Server version	5.7.25
+-- Server version	5.7.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -37,7 +37,7 @@ CREATE TABLE `chapters` (
   PRIMARY KEY (`chapter_id`,`game_id`),
   KEY `fk_chapter_Game1_idx` (`game_id`),
   CONSTRAINT `fk_chapter_Game1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `chapters` (
 
 LOCK TABLES `chapters` WRITE;
 /*!40000 ALTER TABLE `chapters` DISABLE KEYS */;
+INSERT INTO `chapters` VALUES (1,'Agean Sea',1),(3,'Gates of Athens',1),(4,'Road to Athens',1),(5,'Athens Town Square',1),(7,'Rooftops of Athens',1),(8,'Temple of the Oracle',1),(9,'Sewers of Athens',1),(10,'Desert of Lost Souls',1),(11,'Pandora\'s Temple',1),(12,'Rings of Pandora',1),(13,'The Challenge of Atlas',1),(14,'The Challenge of Poseidon',1),(15,'The Challenge of Hades',1),(16,'Cliffs of Madness',1),(17,'Architect\'s Tomb',1),(18,'The Path of Hades',1),(19,'Ares',1),(20,'Bioshock',2),(21,'Welcome to Rapture',2),(22,'Medical Pavilion',2),(23,'Neptune\'s Bounty',2),(24,'Smuggler\'s Hideout',2),(25,'Arcadia',2),(26,'Farmer\'s Market',2),(27,'Return to Arcadia',2),(28,'Fort Frolic',2),(29,'Hephaestus',2),(30,'Rapture Control Central',2),(31,'Olympus Heights',2),(32,'Point Prometheus',2),(33,'Proving Ground',2),(34,'Fontaine',2),(35,'The End?',2),(36,'The Lure of Adventure',3),(37,'Infernal Place',3),(38,'The Malaysia Job',3),(39,'A Normal Life',3),(40,'Hector Alcazar',3),(41,'Once a Thief',3),(42,'Lights Out',3),(43,'The Grave of Henry Avery',3),(44,'Those Who Prove Worthy',3),(45,'The Twelve Towers',3),(46,'Hidden in Plain Sight',3),(47,'At Sea',3),(48,'Marooned',3),(49,'Join Me in Paradise',3),(50,'The Thieves of Libertalia',3),(51,'The Brothers Drake',3),(52,'For Better or Worse',3),(53,'New Devon',3),(54,'Avery\'s Descent',3),(55,'No Escape',3),(56,'Brother\'s Keeper',3),(57,'A Thief\'s End',3),(58,'Epilogue',3);
 /*!40000 ALTER TABLE `chapters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +66,7 @@ CREATE TABLE `favorite` (
   KEY `fk_favorite_games1_idx` (`game_id`),
   CONSTRAINT `fk_favorite_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_favorite_players1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,13 +89,14 @@ CREATE TABLE `games` (
   `game_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `rating` float DEFAULT NULL,
+  `age_limit` int(11) DEFAULT NULL,
   `platform` varchar(100) DEFAULT NULL,
   `detail` text,
   `genre` varchar(100) DEFAULT NULL,
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +105,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (10,'bioshock 10',6,'PC,XBOX 360','this game is the best bioshock they ever made!!! it\'s master piece!!!','Shooter','genji shimadax','images/Flt3k4tops4W3ZM8vFUVDgBa6JP1R8LyPqeGMUI7.jpeg'),(16,'bioshock 8',3,'PC,PS1,PS2,PS3,PS4,XBOX One,XBOX 360,Nintendo Switch,Nintendo 3DS','Lorem ipsum dolor sit amet, consectetur adipiscing elit','Action,Arcade','11','images/Y0VuqVKM6WcQwU7PAnci3cU3fUYrtzOEk5iujELs.jpeg'),(20,'Overwatch',1,'PC','I Love D.va','Shooter','Blizard','/images/5cd804a1d770adva-screenshot-001.jpg');
+INSERT INTO `games` VALUES (1,'god of war',9,18,'PS2','black nipple!!! \"It is a new beginning for Kratos. Living as a man, outside the shadow of the gods, he seeks solitude in the unfamiliar lands of Norse mythology. With new purpose and his son at his side, Kratos must fight for survival as powerful forces threaten to disrupt the new life he has created...\"','Action,Adventure,Puzzle','santa monica studio','/images/5cd8919a6fb89220px-Gowbox.jpg'),(2,'bioshock',8,18,'PC,PS4','run!!!! It BIG DADDY!!!!!!!! Set in the Objectivist underwater dystopia of Rapture in the \'60\'s, Bioshock is a first-person shooter with the premise of arming and genetically modifying yourself in order to survive against the city\'s resident great minds-turned-maddened anomalies and aid Atlas in his mission to overthrow the city\'s cruel ruler, Andrew Ryan.','RPG,Shooter,Action','2k games','/images/5cd891e3a9a3c220px-BioShock_cover.jpg'),(3,'Uncharted 4',8,12,'PS4','Nate and pirate\'s treasure!!! Several years after his last adventure, retired fortune hunter, Nathan Drake, is forced back into the world of thieves. With the stakes much more personal, Drake embarks on a globe-trotting journey in pursuit of a historical conspiracy behind a fabled pirate treasure. His greatest adventure will test his physical limits, his resolve, and ultimately what he\'s willing to sacrifice to save the ones he loves.','Shooter,Action,Adventure,Puzzle','naughty dog','/images/5cd892337ebc0220px-Uncharted_4_box_artwork.jpg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-12 11:34:56
+-- Dump completed on 2019-05-13  2:05:32

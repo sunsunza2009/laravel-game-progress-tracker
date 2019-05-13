@@ -37,7 +37,7 @@ CREATE TABLE `chapters` (
   PRIMARY KEY (`chapter_id`,`game_id`),
   KEY `fk_chapter_Game1_idx` (`game_id`),
   CONSTRAINT `fk_chapter_Game1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `chapters` (
 
 LOCK TABLES `chapters` WRITE;
 /*!40000 ALTER TABLE `chapters` DISABLE KEYS */;
+INSERT INTO `chapters` VALUES (1,'Agean Sea',1),(3,'Gates of Athens',1),(4,'Road to Athens',1),(5,'Athens Town Square',1),(7,'Rooftops of Athens',1),(8,'Temple of the Oracle',1),(9,'Sewers of Athens',1),(10,'Desert of Lost Souls',1),(11,'Pandora\'s Temple',1),(12,'Rings of Pandora',1),(13,'The Challenge of Atlas',1),(14,'The Challenge of Poseidon',1),(15,'The Challenge of Hades',1),(16,'Cliffs of Madness',1),(17,'Architect\'s Tomb',1),(18,'The Path of Hades',1),(19,'Ares',1),(20,'Bioshock',2),(21,'Welcome to Rapture',2),(22,'Medical Pavilion',2),(23,'Neptune\'s Bounty',2),(24,'Smuggler\'s Hideout',2),(25,'Arcadia',2),(26,'Farmer\'s Market',2),(27,'Return to Arcadia',2),(28,'Fort Frolic',2),(29,'Hephaestus',2),(30,'Rapture Control Central',2),(31,'Olympus Heights',2),(32,'Point Prometheus',2),(33,'Proving Ground',2),(34,'Fontaine',2),(35,'The End?',2),(36,'The Lure of Adventure',3),(37,'Infernal Place',3),(38,'The Malaysia Job',3),(39,'A Normal Life',3),(40,'Hector Alcazar',3),(41,'Once a Thief',3),(42,'Lights Out',3),(43,'The Grave of Henry Avery',3),(44,'Those Who Prove Worthy',3),(45,'The Twelve Towers',3),(46,'Hidden in Plain Sight',3),(47,'At Sea',3),(48,'Marooned',3),(49,'Join Me in Paradise',3),(50,'The Thieves of Libertalia',3),(51,'The Brothers Drake',3),(52,'For Better or Worse',3),(53,'New Devon',3),(54,'Avery\'s Descent',3),(55,'No Escape',3),(56,'Brother\'s Keeper',3),(57,'A Thief\'s End',3),(58,'Epilogue',3);
 /*!40000 ALTER TABLE `chapters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +66,7 @@ CREATE TABLE `favorite` (
   KEY `fk_favorite_games1_idx` (`game_id`),
   CONSTRAINT `fk_favorite_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_favorite_players1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,13 +89,14 @@ CREATE TABLE `games` (
   `game_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
   `rating` float DEFAULT NULL,
+  `age_limit` int(11) DEFAULT NULL,
   `platform` varchar(100) DEFAULT NULL,
   `detail` text,
   `genre` varchar(100) DEFAULT NULL,
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +105,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (19,'bioshock 8',9,'PC,PS4','this game is the best bioshock they ever made!!! it\'s master piece!!!','RPG,Shooter,Board Games','2k games','images/9IESAbDc6kK5Q2FAz6GIruEyEH79DuLODR0w8j7b.jpeg'),(20,'bioshock 2555',10,'PC,PS4,XBOX One,Nintendo Switch','omg!!!','Shooter,Action','2k games','images/fimzU0TY1GqP3OKpT3hvM9JWMVq0v5rg5FJ1e0BR.jpeg');
+INSERT INTO `games` VALUES (1,'god of war',9,18,'PS2','black nipple!!!','Action,Adventure,Puzzle','santa monica studio','/images/5cd8919a6fb89220px-Gowbox.jpg'),(2,'bioshock',8,18,'PC,PS4','run!!!! It BIG DADDY!!!!!!!!','RPG,Shooter,Action','2k games','/images/5cd891e3a9a3c220px-BioShock_cover.jpg'),(3,'Uncharted 4',8,12,'PS4','Nate and pirate\'s treasure!!!','Shooter,Action,Adventure,Puzzle','naughty dog','/images/5cd892337ebc0220px-Uncharted_4_box_artwork.jpg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-12  2:35:07
+-- Dump completed on 2019-05-12 22:38:04

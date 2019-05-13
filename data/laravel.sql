@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`games` (
   `game_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `rating` FLOAT NULL,
+  `age_limit` INT NULL,
   `platform` VARCHAR(100) NULL,
   `detail` TEXT NULL,
   `genre` VARCHAR(100) NULL,

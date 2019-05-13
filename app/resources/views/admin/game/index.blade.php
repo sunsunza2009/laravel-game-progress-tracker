@@ -33,10 +33,8 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Rating</th>
+									<th scope="col">Age limit</th>
                                     <th scope="col" colspan="1">Platform</th>
-                                    <th scope="col align-center">
-                                       Detail
-                                    </th>
                                     <th scope="col" colspan="1">Genre</th>
                                     <th scope="col">Developer</th>
                                     <th scope="col" colspan="3">
@@ -50,10 +48,11 @@
                                     <th scope="row">{{ $row->game_id }}</th>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->rating }}</td>
+									<td>{{ $row->age_limit }}</td>
                                     <td colspan="1">
                                         <div>{{ $row->platform }}</div>
                                     </td>
-                                    <td>{{ $row->detail }}</td>
+                                    
                                     <td colspan="1">
                                         <div>{{ $row->genre }}</div>
                                     </td>

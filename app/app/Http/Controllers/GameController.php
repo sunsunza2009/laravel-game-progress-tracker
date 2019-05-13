@@ -41,6 +41,7 @@ class GameController extends Controller
 		[
 			'name' => 'required|max:99',
 			'rating' => 'required',
+			'age_limit' => 'required',
 			'platform' => 'required|max:100',
 			'detail' => 'required',
 			'genre' => 'required',
@@ -51,6 +52,7 @@ class GameController extends Controller
         $game = new Game;
 		$game->name = $request->get('name');
 		$game->rating = $request->get('rating');
+		$game->age_limit = $request->get('age_limit');
 		$tmp_platform = $request->input('platform');
 		$game->detail = $request->get('detail');
 		$tmp_genre = $request->input('genre');
@@ -129,6 +131,7 @@ class GameController extends Controller
 		[
 			'name' => 'required|max:99',
 			'rating' => 'required',
+			'age_limit' => 'required',
 			'platform' => 'required|max:100',
 			'detail' => 'required',
 			'genre' => 'required',
@@ -139,6 +142,7 @@ class GameController extends Controller
         $game = Game::where('game_id', $id)->first();
 		$game->name = $request->get('name');
 		$game->rating = $request->get('rating');
+		$game->age_limit = $request->get('age_limit');
 		$tmp_platform = $request->input('platform');
 		$game->detail = $request->get('detail');
 		$tmp_genre = $request->input('genre');
@@ -146,7 +150,7 @@ class GameController extends Controller
 		$game->platform = implode(",",$tmp_platform);
 		$game->genre = implode(",",$tmp_genre);
 		Game::where('game_id', $id)
-		->update(['name' => $game->name,'rating' => $game->rating,'platform' => $game->platform,'detail' => $game->detail,'genre' => $game->genre,'developer' => $game->developer]);
+		->update(['name' => $game->name,'rating' => $game->rating,'platform' => $game->platform,'detail' => $game->detail,'genre' => $game->genre,'developer' => $game->developer,'age_limit' => $game->age_limit]);
 		return redirect('admin/game');
     }
 

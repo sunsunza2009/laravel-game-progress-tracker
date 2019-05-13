@@ -10,6 +10,6 @@ class Game extends Model
     protected $table = "games";
 	
 	protected $fillable = [
-		'name','rating','platform','detail','genre','developer','poster_url'
+		'name','rating','age_limit','platform','detail','genre','developer','poster_url'
 	];
 }

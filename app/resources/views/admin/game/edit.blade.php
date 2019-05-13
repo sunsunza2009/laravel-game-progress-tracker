@@ -25,6 +25,13 @@
                             <input type="number" name="rating" class="form-control" step="1" min="0" max="10"
                                 value="{{ $game->rating }}">
                         </div>
+						<div class="form-group">
+                            <label>
+                                <h4>Age limit</h4>
+                            </label>
+                            <input type="number" name="age_limit" class="form-control" step="1"
+                                value="{{ $game->age_limit }}">
+                        </div>
                         <div class="form-group">
                             <label>
                                 <h4>Platform</h4>

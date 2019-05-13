@@ -26,8 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'api'], function(){
 	Route::get('/fav', 'FavController@index');
-	Route::get('/fav/{id}/add', 'FavController@store');
-	Route::get('/fav/{id}/del', 'FavController@destroy');
+    Route::get('/fav/{id}/add', 'FavController@store');
+    Route::get('/fav/{id}/del', 'FavController@destroy');
+    Route::get('/detail/{id}', 'DetailController@show');
 	Route::get('/game', 'GameApiController@game');
 });
 

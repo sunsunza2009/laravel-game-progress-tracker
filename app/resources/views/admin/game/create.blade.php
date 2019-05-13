@@ -20,6 +20,12 @@
 				<input type="number" step="1" name="rating"  min="0" max="10" class="form-control">
 				</div>
 				<div class="form-group">
+                            <label>
+                                <h4>Age limit</h4>
+                            </label>
+                            <input type="number" name="age_limit" class="form-control" step="1">
+                        </div>
+				<div class="form-group">
 				<label><h4>Platform</h4></label>
 				<div class="qfc-container">
                             <div class="row">

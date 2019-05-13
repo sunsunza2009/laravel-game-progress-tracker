@@ -24,13 +24,14 @@ function clear_list(){
 	$("#list").empty();
 }
 function add_list(data,platform_html,bt_txt,first){
+
 	$("#list").append(	'<div class="card" style="width: 18rem;">'+
 								'<img class="card-img-top" src="http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg">'+
 								'<div class="card-body">'+
 								'<h5 class="card-title">'+data['name']+'</h5>'+
-								'<p class="card-text">'+data['detail']+'</p>'+
+								'<p class="card-text">'+data['detail'].substring(0, 100)+'...</p>'+
 								'<a href="#" class="card-link float-left" onclick="doclick('+data['game_id']+','+first+',this)"><h5>'+bt_txt+'</h5></a>'+
-								'<a href="#" class="card-link float-right"><h5>Read more <i class="fas fa-angle-double-right"></i></h5></a><br>'+
+								'<a href="#" class="card-link float-right" onclick="viewDetail('+data['game_id']+')"><h5>Read more <i class="fas fa-angle-double-right"></i></h5></a><br>'+
 								'</div>'+
 								'<div class="card-footer bg-transparent">'+
 								'<ul class="list-unstyled list-inline font-small">'+
@@ -65,6 +66,10 @@ function doclick(id,first, el){
 		init();
 	else
 		$(el).parent().parent().remove();
+}
+function viewDetail(id){
+	//$.get( "/api/detail/"+id);
+	window.location.href = "../api/detail/"+id;
 }
 $( document ).ready(function() {
 	console.log("Ready");
