@@ -5,6 +5,8 @@ use App\Game;
 use App\Chapters;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\player;
+use Auth;
 
 class DetailController extends Controller
 {
@@ -46,11 +48,21 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+            $user_id = Auth::user()->id;
+            $player = player::where('player_id',$user_id)->first();
+            $now = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', now());
+            $playerBD = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $player->birth_date.' 00:00:00');
+            $player_age = $now->diffInYears($playerBD);
         $gamedetail = Game::where('game_id', $id)->first();
         $chapterdetail = Chapters::where('game_id', $id)->get();
-        
+        //dd($player_age." ".$gamedetail->age_limit);
+        if($player_age >= $gamedetail->age_limit){
+            //dd($player_age);
        return view('detail',compact('gamedetail','chapterdetail'));
+        }else{
+            return view('limit');  
+        }
     }
 
     /**

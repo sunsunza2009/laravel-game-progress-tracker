@@ -16,7 +16,7 @@ class FavController extends Controller
     public function index()
     {
         if (!Auth::guest()) {
-			$user_id = Auth::user()->id;
+            $user_id = Auth::user()->id;
 			$fav_list = DB::select("SELECT g.game_id,g.name,g.rating,g.platform,g.detail,g.genre,g.developer,g.poster_url FROM favorite f JOIN games g WHERE f.game_id = g.game_id and f.player_id = ?",[$user_id]);			
             return $fav_list;
 

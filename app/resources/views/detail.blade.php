@@ -13,8 +13,8 @@
         
     }
     .dot {
-  height: 100px;
-  width: 100px;
+  height: 110px;
+  width: 110px;
   background-color: #ffff;
   border-radius: 50%;
   display: inline-block;
@@ -50,7 +50,7 @@
                 <br>
             <h6>{{$gamedetail->detail}}</h6>
             </div>
-            <div class="col-lg" style="padding-top:130px;padding-left:50px"> 
+            <div class="col-lg" style="padding-top:120px;padding-left:40px"> 
             <span class="dot"><h1>{{$gamedetail->rating}}/10</h1></span>
             </div>
             </div>
