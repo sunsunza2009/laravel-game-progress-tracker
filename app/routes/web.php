@@ -22,13 +22,13 @@ Auth::routes();
 //Route for user
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
+	Route::get('/detail/{id}', 'DetailController@show');
 });
 
 Route::group(['prefix' => 'api'], function(){
 	Route::get('/fav', 'FavController@index');
     Route::get('/fav/{id}/add', 'FavController@store');
     Route::get('/fav/{id}/del', 'FavController@destroy');
-    Route::get('/detail/{id}', 'DetailController@show');
 	Route::get('/game', 'GameApiController@game');
 });
 
