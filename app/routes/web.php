@@ -37,9 +37,6 @@ Route::group(['prefix' => 'api'], function(){
 //Route for admin
 Route::group(['prefix' => 'admin'], function(){
     Route::group(['middleware' => ['admin']], function(){        
-		Route::get('/dashboard', function () {
-			return view('admin/dashboard');
-		});
         Route::resource('chapters','ChapterController');
         Route::resource('game','GameController');
         Route::get('search', 'GameController@search');

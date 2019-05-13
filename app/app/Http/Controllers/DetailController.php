@@ -59,9 +59,10 @@ class DetailController extends Controller
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
-       return view('detail',compact('gamedetail','chapterdetail'));
+			return view('detail',compact('gamedetail','chapterdetail'));
         }else{
-            return view('limit');  
+			$status = 'You\'re too young to view this content.';
+            return view('detail',compact('gamedetail','chapterdetail','status'));
         }
     }
 
