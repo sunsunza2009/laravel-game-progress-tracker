@@ -1,6 +1,5 @@
 @extends('layouts.app')
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/detail.css" rel="stylesheet">
 <style>
     .parallax {
         /* The image used */
@@ -123,8 +122,13 @@ body{
                 <br>
             <h6>{{$gamedetail->detail}}</h6>
             </div>
-            <div class="col-lg" style="padding-top:120px;padding-left:40px"> 
-            <span class="dot"><h1>{{$gamedetail->rating}}/10</h1></span>
+            <div class="col-lg" style="padding-top:120px;padding-left:40px">
+            <span class="dot"><h1>{{$gamedetail->rating}}/10</h1></span><br><br><br>
+            @if ($isFav === 1)
+            <a href="" onclick="deleteFav({{$gamedetail->game_id}})" class="btn btn-danger btn-lg">Remove</a>
+            @else
+            <a href="" onclick="addFav({{$gamedetail->game_id}})" class="btn btn-success btn-lg">Follow</a>
+            @endif
             </div>
             </div>
             <!-- /.col-md-4 -->
@@ -149,6 +153,19 @@ body{
     </div>
 </div>
 <!-- /.container -->
-
+<script>
+function deleteFav(id){
+	
+		$.get( "/api/fav/"+id+"/del", function( data ) {
+			console.log(data);
+		});
+}
+function addFav(id){
+	
+		$.get( "/api/fav/"+id+"/add", function( data ) {
+			console.log(data);
+		});
+}
+</script>
 
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 @section('content')
-<div class="containerx">
+<div class="container">
     <div class="row">
         <div class="col-md-offset-1">
             <div class="panel panel-default">

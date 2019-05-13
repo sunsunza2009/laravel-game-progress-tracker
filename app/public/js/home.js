@@ -26,7 +26,6 @@ function add_list(data,platform_html,bt_txt,first){
 								'<div class="card-body">'+
 								'<h5 class="card-title">'+data['name']+'</h5>'+
 								'<p class="card-text">'+data['detail'].substring(0, 100)+'...</p>'+
-								'<a href="#" class="card-link float-left" onclick="doclick('+data['game_id']+','+first+',this)"><h5>'+bt_txt+'</h5></a>'+
 								'<a href="#" class="card-link float-right" onclick="viewDetail('+data['game_id']+')"><h5>Read more <i class="fas fa-angle-double-right"></i></h5></a><br>'+
 								'</div>'+
 								'<div class="card-footer bg-transparent">'+
@@ -43,25 +42,6 @@ function platform(data){
 		platform_html = platform_html + '<img src="/icon/platform/'+platform[j]+'.png" alt="'+platform[j]+'" title="'+platform[j]+'" style="max-width:32px;max-height:32px;padding-right: 5px;">';
 	}
 	return platform_html;
-}
-function doclick(id,first, el){
-	if(el["text"] == "Follow"){
-		$.get( "/api/fav/"+id+"/add", function( data ) {
-			console.log(data);
-			if(data["result"] == "True")
-				$(el).html("<h5>Remove</h5>");
-		});
-	} else {
-		$.get( "/api/fav/"+id+"/del", function( data ) {
-			console.log(data);
-			if(data["result"] == "True")
-				$(el).html("<h5>Follow</h5>");
-		});
-	}
-	if(first == true || $("#list").children().length == 1)
-		init();
-	else
-		$(el).parent().parent().remove();
 }
 function viewDetail(id){
 	//$.get( "/api/detail/"+id);

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\player;
 use Auth;
+use App\fav;
 
 class DetailController extends Controller
 {
@@ -48,8 +49,10 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {       
             $user_id = Auth::user()->id;
+            $check = fav::where('game_id', $id)->where('player_id', $user_id)->get();
+            $isFav = count($check);	
             $player = player::where('player_id',$user_id)->first();
             $now = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', now());
             $playerBD = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $player->birth_date.' 00:00:00');
@@ -59,10 +62,10 @@ class DetailController extends Controller
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
-			return view('detail',compact('gamedetail','chapterdetail'));
+			return view('detail',compact('gamedetail','chapterdetail','isFav'));
         }else{
 			$status = 'You\'re too young to view this content.';
-            return view('detail',compact('gamedetail','chapterdetail','status'));
+            return view('detail',compact('gamedetail','chapterdetail','status','isFav'));
         }
     }
 

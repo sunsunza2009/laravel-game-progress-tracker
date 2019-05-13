@@ -44,12 +44,19 @@ class FavController extends Controller
     public function store(Request $request,$id)
     {
 		if (!Auth::guest()) {
-			$user_id = Auth::user()->id;			
-			$fav = new fav;
+            $user_id = Auth::user()->id;	
+            $check = fav::where('game_id', $id)->where('player_id', $user_id)->get();	
+            if(count($check)==0){
+                $fav = new fav;
 			$fav->player_id = $user_id;
 			$fav->game_id = $id;
 			$fav->save();
 			return response()->json(['result' => 'True']);
+            }
+            else{
+                return response()->json(['result' => 'False']); 
+            }		
+			
         } else {
 			return response()->json(['result' => 'False']);
         }
