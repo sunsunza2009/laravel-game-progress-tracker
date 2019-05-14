@@ -22,7 +22,8 @@ Auth::routes();
 //Route for user
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index');
-	Route::get('/detail/{id}', 'DetailController@show');
+    Route::get('/detail/{id}', 'DetailController@show');
+    Route::resource('detail','DetailController');
 });
 
 Route::group(['prefix' => 'api'], function(){

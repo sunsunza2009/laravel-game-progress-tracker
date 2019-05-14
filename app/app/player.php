@@ -9,6 +9,6 @@ class player extends Model
     protected $table = "players";
 	
 	protected $fillable = [
-		'player_id','name','gender','birth_date','email','photo'
+		'player_id','name','gender','birth_date','email'
 	];
 }

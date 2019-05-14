@@ -66,7 +66,7 @@ CREATE TABLE `favorite` (
   KEY `fk_favorite_games1_idx` (`game_id`),
   CONSTRAINT `fk_favorite_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_favorite_players1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +75,7 @@ CREATE TABLE `favorite` (
 
 LOCK TABLES `favorite` WRITE;
 /*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
+INSERT INTO `favorite` VALUES (17,6,2);
 /*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +198,6 @@ CREATE TABLE `players` (
   `gender` enum('M','F') DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `photo` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`player_id`)
@@ -210,7 +210,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` VALUES (5,'test','F','2019-05-01','test@test.com','','2019-05-05 16:06:55','2019-05-05 16:06:55'),(6,'user','M','1997-05-01','user@user.com','','2019-05-06 07:35:12','2019-05-06 07:35:12');
+INSERT INTO `players` VALUES (5,'test','F','2019-05-01','test@test.com','2019-05-05 16:06:55','2019-05-05 16:06:55'),(6,'user','M','1997-05-01','user@user.com','2019-05-06 07:35:12','2019-05-06 07:35:12');
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +226,7 @@ CREATE TABLE `progress` (
   `player_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
-  `progress_time` int(11) DEFAULT NULL,
+  `comment` varchar(99) DEFAULT NULL,
   `last_play_time` datetime DEFAULT NULL,
   `progress_percent` int(11) DEFAULT NULL,
   PRIMARY KEY (`progress_id`,`player_id`,`chapter_id`,`game_id`),
@@ -234,7 +234,7 @@ CREATE TABLE `progress` (
   KEY `fk_progress_chapters1_idx` (`chapter_id`,`game_id`),
   CONSTRAINT `fk_progress_chapters1` FOREIGN KEY (`chapter_id`, `game_id`) REFERENCES `chapters` (`chapter_id`, `game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_progress_player1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-13  4:35:55
+-- Dump completed on 2019-05-14  7:11:02

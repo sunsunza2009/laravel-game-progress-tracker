@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\player;
 use Auth;
 use App\fav;
+use App\Progress;
 
 class DetailController extends Controller
 {
@@ -39,7 +40,30 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'game_id' => 'required',
+                'player_id' => 'required',
+                'chapter_id' => 'required'
+            ]
+            );
+            $progress = new Progress;
+            $progress->player_id = $request->get('player_id');
+            $progress->game_id = $request->get('game_id');
+            $progress->chapter_id = $request->get('chapter_id');
+            $progress->comment = $request->get('comment');
+            $progress->last_play_time = now();
+            $x=1;
+            $chapter = Chapters::where('game_id', $request->get('game_id'))->get();
+            foreach ($chapter as $c) {
+                if($c->chapter_id == $progress->chapter_id){
+                    break;
+                }
+                $x++;
+            }
+            $progress->progress_percent = ($x/count($chapter))*100;
+            $progress->save();
+            return redirect('detail/'.$request->get('game_id'));
     }
 
     /**
@@ -59,13 +83,14 @@ class DetailController extends Controller
             $player_age = $now->diffInYears($playerBD);
         $gamedetail = Game::where('game_id', $id)->first();
         $chapterdetail = Chapters::where('game_id', $id)->get();
+        $progress = Progress::where('game_id', $id)->where('player_id', $user_id)->get();
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
-			return view('detail',compact('gamedetail','chapterdetail','isFav'));
+			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress'));
         }else{
 			$status = 'You\'re too young to view this content.';
-            return view('detail',compact('gamedetail','chapterdetail','status','isFav'));
+            return view('detail');
         }
     }
 
@@ -100,6 +125,9 @@ class DetailController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $progress = Progress::where('progress_id', $id)->first();
+        $gid = $progress->game_id;
+        Progress::where('progress_id', $id)->delete();
+        return redirect('detail/'.$gid);
     }
 }

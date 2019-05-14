@@ -5,6 +5,7 @@ use Auth;
 use DB;
 use Illuminate\Http\Request;
 use App\fav;
+use App\Progress;
 
 class FavController extends Controller
 {
@@ -108,7 +109,8 @@ class FavController extends Controller
 		if (!Auth::guest()) {
 			$user_id = Auth::user()->id;
 			$fav_list = fav::where('game_id', $id)->where('player_id', $user_id)->first();	
-			fav::where('fav_id', $fav_list["fav_id"])->delete();
+            Progress::where('game_id', $id)->where('player_id', $user_id)->delete();
+            fav::where('fav_id', $fav_list["fav_id"])->delete();
 			return response()->json(['result' => 'True']);
         } else {
 			return response()->json(['result' => 'False']);

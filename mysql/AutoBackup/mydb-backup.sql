@@ -105,7 +105,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'god of war',9,18,'PS2','black nipple!!! \"It is a new beginning for Kratos. Living as a man, outside the shadow of the gods, he seeks solitude in the unfamiliar lands of Norse mythology. With new purpose and his son at his side, Kratos must fight for survival as powerful forces threaten to disrupt the new life he has created...\"','Action,Adventure,Puzzle','santa monica studio','/images/5cd8919a6fb89220px-Gowbox.jpg'),(2,'bioshock',8,18,'PC,PS4','run!!!! It BIG DADDY!!!!!!!! Set in the Objectivist underwater dystopia of Rapture in the \'60\'s, Bioshock is a first-person shooter with the premise of arming and genetically modifying yourself in order to survive against the city\'s resident great minds-turned-maddened anomalies and aid Atlas in his mission to overthrow the city\'s cruel ruler, Andrew Ryan.','RPG,Shooter,Action','2k games','/images/5cd891e3a9a3c220px-BioShock_cover.jpg'),(3,'Uncharted 4',8,12,'PS4','Nate and pirate\'s treasure!!! Several years after his last adventure, retired fortune hunter, Nathan Drake, is forced back into the world of thieves. With the stakes much more personal, Drake embarks on a globe-trotting journey in pursuit of a historical conspiracy behind a fabled pirate treasure. His greatest adventure will test his physical limits, his resolve, and ultimately what he\'s willing to sacrifice to save the ones he loves.','Shooter,Action,Adventure,Puzzle','naughty dog','/images/5cd892337ebc0220px-Uncharted_4_box_artwork.jpg');
+INSERT INTO `games` VALUES (1,'god of war',9,18,'PS2','black nipple!!! \"It is a new beginning for Kratos. Living as a man, outside the shadow of the gods, he seeks solitude in the unfamiliar lands of Norse mythology. With new purpose and his son at his side, Kratos must fight for survival as powerful forces threaten to disrupt the new life he has created...\"','Action,Adventure,Puzzle','santa monica studio','/images/5cd8919a6fb89220px-Gowbox.jpg'),(2,'bioshock',8,18,'PC,PS4','run!!!! It BIG DADDY!!!!!!!! Set in the Objectivist underwater dystopia of Rapture in the \'60\'s, Bioshock is a first-person shooter with the premise of arming and genetically modifying yourself in order to survive against the city\'s resident great minds-turned-maddened anomalies and aid Atlas in his mission to overthrow the city\'s cruel ruler, Andrew Ryan.','RPG,Shooter,Action','2k games','/images/5cd891e3a9a3c220px-BioShock_cover.jpg'),(3,'Uncharted 4',10,12,'PS4','Nate and pirate\'s treasure!!! Several years after his last adventure, retired fortune hunter, Nathan Drake, is forced back into the world of thieves. With the stakes much more personal, Drake embarks on a globe-trotting journey in pursuit of a historical conspiracy behind a fabled pirate treasure. His greatest adventure will test his physical limits, his resolve, and ultimately what he\'s willing to sacrifice to save the ones he loves.','Shooter,Action,Adventure,Puzzle','naughty dog','/images/5cd892337ebc0220px-Uncharted_4_box_artwork.jpg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +197,6 @@ CREATE TABLE `players` (
   `gender` enum('M','F') DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `photo` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`player_id`)
@@ -210,7 +209,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` VALUES (5,'test','F','2019-05-01','test@test.com','','2019-05-05 16:06:55','2019-05-05 16:06:55'),(6,'user','M','2019-05-01','user@user.com','','2019-05-06 07:35:12','2019-05-06 07:35:12');
+INSERT INTO `players` VALUES (5,'test','F','2019-05-01','test@test.com','2019-05-05 16:06:55','2019-05-05 16:06:55'),(6,'user','M','1997-05-01','user@user.com','2019-05-06 07:35:12','2019-05-06 07:35:12');
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +225,7 @@ CREATE TABLE `progress` (
   `player_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
-  `progress_time` int(11) DEFAULT NULL,
+  `comment` varchar(99) DEFAULT NULL,
   `last_play_time` datetime DEFAULT NULL,
   `progress_percent` int(11) DEFAULT NULL,
   PRIMARY KEY (`progress_id`,`player_id`,`chapter_id`,`game_id`),
@@ -287,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-13  2:05:32
+-- Dump completed on 2019-05-14  5:23:47

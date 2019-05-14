@@ -43,7 +43,6 @@ CREATE TABLE IF NOT EXISTS `laravel`.`players` (
   `gender` ENUM("M", "F") NULL,
   `birth_date` DATE NULL,
   `email` VARCHAR(100) NULL,
-  `photo` VARCHAR(100) NULL,
   PRIMARY KEY (`player_id`))
 ENGINE = InnoDB;
 
@@ -73,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`progress` (
   `player_id` INT NOT NULL,
   `chapter_id` INT NOT NULL,
   `game_id` INT NOT NULL,
-  `progress_time` INT NULL,
+  `comment` VARCHAR(99) NULL,
   `last_play_time` DATETIME NULL,
   `progress_percent` INT NULL,
   PRIMARY KEY (`progress_id`, `player_id`, `chapter_id`, `game_id`),

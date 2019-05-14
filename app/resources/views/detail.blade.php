@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
     .parallax {
         /* The image used */
@@ -135,20 +136,60 @@ body{
         
         <!-- /.row -->
 		<br>
+        @if ($isFav === 1)
+        <form method="post" action="{{ route('detail.store') }}" enctype="multipart/form-data">
+				{{ csrf_field() }}
+				<div class="form-group">
+				<label><h4>Choose Chapter</h4></label>
+				<select class="form-control" name="chapter_id">
+                @foreach($chapterdetail as $row)
+        <option value="{{ $row->chapter_id }}">{{ $row->name }}</option>
+        @endforeach
+      </select>
+				</div>
+				
+				
+				<input type="hidden" name="player_id" value="{{$user_id}}">
+                <input type="hidden" name="game_id" value="{{$gamedetail->game_id}}">
+				
+				<div class="form-group">
+				<label><h4>Comment</h4></label>
+				<input type="text" name="comment" class="form-control">
+				</div>
+				<div> 
+				<button type="submit" class="btn btn-success"><h4>add progress</h4></button>
+				</form>
+                <br>
         <table class="table">
                             <thead>
                                 <tr>
+                                    <th scope="col">Progress ID</th>
                                     <th scope="col">Chapter Name</th>
+                                    <th scope="col">Comment</th>
+                                    <th scope="col">Save Time</th>
+                                    <th scope="col">Progress percent</th>
                                 </tr>
                             </thead>
-                            @foreach($chapterdetail as $row)
+                            @foreach($progress as $row)
                             <tbody>
                                 <tr>
-                                    <td scope="row">- {{ $row->name }}</td>
+                                    <th scope="row">{{ $row->progress_id }}</th>
+                                    <td scope="row">{{ $row->chapter_id }}</td>
+                                    <td scope="row">{{ $row->comment }}</td>
+                                    <td scope="row">{{ $row->last_play_time }}</td>
+                                    <td scope="row">{{ $row->progress_percent }}</td>
+                                    <td>
+                                        <form action="{{ route('detail.destroy',$row->progress_id) }}" method="post">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="btn btn-danger">delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                             @endforeach
                         </table>
+        @endif
 		@endif
     </div>
 </div>
