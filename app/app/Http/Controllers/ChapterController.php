@@ -34,6 +34,7 @@ class ChapterController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->get('method_add') == 'text'){
         $request->validate(
 		[
             'name' => 'required',
@@ -49,6 +50,25 @@ class ChapterController extends Controller
         return redirect()->action(
             'ChapterController@show', ['id' => $request->get('game_id')]
         );
+        }
+        else if($request->get('method_add') == 'file'){
+            if (!$request->hasFile('chapters_file')) {
+                dd("y");
+            }
+            else{
+                $cfile = $request->file('chapters_file');
+                $x=0;
+                foreach(file($cfile) as $line) {
+                    $x++;
+                    $chapters = new Chapters;
+		            $chapters->name = $line;
+		            $chapters->game_id = $request->get('game_id');
+                    $chapters->save();
+                }
+                return redirect()->action(
+                    'ChapterController@show', ['id' => $request->get('game_id')]);
+            }
+        }
     }
 
     /**

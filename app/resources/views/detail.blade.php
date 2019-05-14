@@ -149,8 +149,8 @@ body{
 				</div>
 				
 				
-				<input type="hidden" name="player_id" value="{{$user_id}}">
-                <input type="hidden" name="game_id" value="{{$gamedetail->game_id}}">
+				<input type="hidden" name="player_id" value="{{$user_id}}" style="display:none">
+                <input type="hidden" name="game_id" value="{{$gamedetail->game_id}}" style="display:none">
 				
 				<div class="form-group">
 				<label><h4>Comment</h4></label>
@@ -163,7 +163,6 @@ body{
         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Progress ID</th>
                                     <th scope="col">Chapter Name</th>
                                     <th scope="col">Comment</th>
                                     <th scope="col">Save Time</th>
@@ -173,7 +172,6 @@ body{
                             @foreach($progress as $row)
                             <tbody>
                                 <tr>
-                                    <th scope="row">{{ $row->progress_id }}</th>
                                     <td scope="row">{{ $row->chapter_id }}</td>
                                     <td scope="row">{{ $row->comment }}</td>
                                     <td scope="row">{{ $row->last_play_time }}</td>

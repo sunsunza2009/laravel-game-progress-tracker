@@ -46,7 +46,7 @@ class GameController extends Controller
 			'detail' => 'required',
 			'genre' => 'required',
 			'developer' => 'required',
-			'poster_url' => 'required'
+			'poster_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 		]
 		);
         $game = new Game;

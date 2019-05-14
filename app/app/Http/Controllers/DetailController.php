@@ -47,6 +47,9 @@ class DetailController extends Controller
                 'chapter_id' => 'required'
             ]
             );
+            $user_id = Auth::user()->id;
+            $checkChapter = Chapters::where('game_id', $request->get('game_id'))->where('chapter_id', $request->get('chapter_id'))->first();
+            if($user_id == $request->get('player_id') && $checkChapter != null){
             $progress = new Progress;
             $progress->player_id = $request->get('player_id');
             $progress->game_id = $request->get('game_id');
@@ -64,6 +67,7 @@ class DetailController extends Controller
             $progress->progress_percent = ($x/count($chapter))*100;
             $progress->save();
             return redirect('detail/'.$request->get('game_id'));
+        }
     }
 
     /**
@@ -84,13 +88,20 @@ class DetailController extends Controller
         $gamedetail = Game::where('game_id', $id)->first();
         $chapterdetail = Chapters::where('game_id', $id)->get();
         $progress = Progress::where('game_id', $id)->where('player_id', $user_id)->get();
+        foreach ($progress as $p) {
+            foreach ($chapterdetail as $c) {
+                if($p->chapter_id == $c->chapter_id){
+                    $p->chapter_id = $c->name;
+                }
+            }
+        }
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
 			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress'));
         }else{
 			$status = 'You\'re too young to view this content.';
-            return view('detail');
+            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status'));
         }
     }
 
