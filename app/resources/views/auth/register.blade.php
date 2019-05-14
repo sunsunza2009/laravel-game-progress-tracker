@@ -81,6 +81,20 @@
                                 @endif
                             </div>
                         </div>
+						
+						<div class="form-group row">
+                            <label for="bod" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
+                            <div class="col-md-6">
+                                <div class="input-group">
+									<input class="form-control" type="date" name="bod" required>
+								</div>										 
+                                @if ($errors->has('bod'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('bod') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
