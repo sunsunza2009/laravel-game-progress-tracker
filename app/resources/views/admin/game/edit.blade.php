@@ -63,7 +63,7 @@
                                     <label>
                                         <h4>Detail</h4>
                                     </label>
-                                    <input type="text" name="detail" class="form-control" value="{{ $game->detail }}">
+                                    <textarea rows="3" name="detail" class="form-control">{{ $game->detail }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>
@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-warning">edit</button>
+                                    <button type="submit" class="btn btn-warning">Edit</button>
                     </form>
                 </div>
             </div>
