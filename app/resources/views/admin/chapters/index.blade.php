@@ -13,6 +13,18 @@
 						<label for="nameText">Name</label>
 						<input type="text" name="name" class="form-control">
 						<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
+						<input type="hidden" name="method_add"  value="text" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-success">Add Chapters</button>
+				</form>
+
+				<form method="post" action="{{ route('chapters.store') }}" enctype="multipart/form-data">
+					{{ csrf_field() }}
+					<div class="form-group">
+						<label for="chapters_file">File</label>
+						<input type="file" name="chapters_file" class="form-control">
+						<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
+						<input type="hidden" name="method_add"  value="file" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-success">Add Chapters</button>
 				</form>

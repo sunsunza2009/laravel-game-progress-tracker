@@ -17,7 +17,7 @@
 
                                 <input type="text" class="form-control" placeholder="Search game" name="search"
                                     id="search" style="border: 1px solid #4dd0e1">
-                                    &nbsp;<button class="btn btn-primary" type="submit">search</button>
+                                    &nbsp;<button class="btn btn-primary" type="submit">Search</button>
 
 
                             </form>
@@ -59,16 +59,16 @@
                                     <td>{{ $row->developer }}</td>
 
                                     <td><a href="{{ route('game.edit',$row->game_id) }}"
-                                            class="btn btn-warning">edit</a></td>
+                                            class="btn btn-warning">Edit</a></td>
 
                                     <td>
                                         <form action="{{ route('game.destroy',$row->game_id) }}" method="post">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="submit" class="btn btn-danger">delete</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
-                                    <td><a href="{{ route('chapters.show',$row->game_id) }}" class="btn btn-primary">add
+                                    <td><a href="{{ route('chapters.show',$row->game_id) }}" class="btn btn-primary">Add
                                             chapter</a></td>
                                 </tr>
                             </tbody>
