@@ -65,7 +65,7 @@
 				</div>
 				<div class="form-group">
 				<label><h4>Detail</h4></label>
-				<input type="text" name="detail" class="form-control">
+				<textarea rows="3" name="detail" class="form-control"></textarea>
 				</div>
 				<div class="form-group">
 				<label><h4>Genre</h4></label>
@@ -122,10 +122,14 @@
 				<input type="text" name="developer" class="form-control">
 				</div>
 				<div class="form-group">
-				<label><h4>Picture</h4></label>
+				<label><h4>Poster</h4></label>
 				<input type="file" name="poster_url" class="form-control">
 				</div>
-				<div> 
+				<div class="form-group">
+				<label><h4>Picture</h4></label><br>
+				<input type="file" name="image[]" multiple class="form-control">
+				</div>
+				 
 				<button type="submit" class="btn btn-success"><h4>add game</h4></button>
 				</form>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Chapters;
+use App\Game;
 
 class ChapterController extends Controller
 {
@@ -79,8 +80,10 @@ class ChapterController extends Controller
      */
     public function show($id)
     {
+        $game = Game::where('game_id', $id)->first();
         $chapters = Chapters::where('game_id', $id)->get();
-       return view('admin.chapters.index',compact('chapters','id'));
+        $name=$game->name; 
+       return view('admin.chapters.index',compact('chapters','id','name'));
     }
 
     /**

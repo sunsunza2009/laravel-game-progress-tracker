@@ -1,6 +1,27 @@
 @extends('layouts.app')
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+  
+  <style type="text/css">
+
+input[type=file]{
+
+  display: inline;
+
+}
+
+
+#image_preview img{
+
+  width: 200px;
+
+  padding: 5px;
+
+}
+
+</style>
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,7 +30,7 @@
 
                 <div class="panel-heading">
                     <form method="post" action="{{ route('game.update',$game->game_id) }}"
-                        class="form-group forms wrapper">
+                        class="form-group forms wrapper" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
                         <div class="form-group">
@@ -101,13 +122,40 @@
                                     <input type="text" name="developer" class="form-control"
                                         value="{{ $game->developer }}">
                                 </div>
-
+                                <div class="form-group">
+				<label><h4>Poster</h4></label><br>
+				<input type="file" id="image" name="poster_url" multiple class="form-control">
+				</div>
+                <div id="image_previewx"><img src="{{$game->poster_url}}" width="50%"></div>
+                                <div class="form-group">
+                                <br>
+				<label><h4>Other Picture</h4></label><br>
+				<input type="file" id="image" name="image[]" multiple class="form-control">
+				</div>
+                <input type="hidden" name="delImage" id="delImage" class="form-control">
+                <div id="image_preview">
+                @foreach ($image as $key => $value)
+                <div id="{{$value->img_id}}">
+                <img src="{{$value->url}}">
+                <button class="btn btn-danger" onclick="DelPic({{$value->img_id}})">delete Picture</button>
+                </div>
+                @endforeach
+                </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-warning">Edit</button>
                     </form>
+                    <p id="demo"></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
+<script>
+function DelPic(picId) {
+    var element = document.getElementById(picId);
+    element.parentNode.removeChild(element);
+    document.getElementById("delImage").value+=picId+",";
+}
+</script>

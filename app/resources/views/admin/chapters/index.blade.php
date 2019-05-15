@@ -1,12 +1,12 @@
 @extends('layouts.app')
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 @section('content')
+
 <div class="container">
-			
 	<div class="row justify-content-center">
         <div class="col-md-8"> 
 			<div class="panel panel-default">
-		
+			<h1 class="text-center">{{$name}}</h1>
 				<form method="post" action="{{ route('chapters.store') }}">
 					{{ csrf_field() }}
 					<div class="form-group">
@@ -36,15 +36,13 @@
 		<tr>
             <th width="280px">chapter_id</th>
             <th width="280px">Name</th>
-            <th width="280px">game_id</th>
 			 <th width="280px">Action</th>
 		</tr>
 @foreach($chapters as $row)		
 	<tbody>
 		<tr>
 			<td>{{ $row->chapter_id }}</td>
-			<td>{{ $row->name }}</td>
-			<td>{{ $row->game_id }}</td>	
+			<td>{{ $row->name }}</td>	
 			<td>
 				<form action="{{ route('chapters.destroy',$row->chapter_id) }}" method="post">	
 				<a href="{{ route('chapters.edit',$row->chapter_id) }}" class="btn btn-warning">Edit</a>

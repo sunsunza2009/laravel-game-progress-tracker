@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Chapters;
+use App\Image;
 
 class GameController extends Controller
 {
@@ -46,7 +47,7 @@ class GameController extends Controller
 			'detail' => 'required',
 			'genre' => 'required',
 			'developer' => 'required',
-			'poster_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'poster_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 		]
 		);
         $game = new Game;
@@ -66,8 +67,19 @@ class GameController extends Controller
 			$game->poster_url = '/images/'.$name;
         }
 		$game->platform = implode(",",$tmp_platform);
-		$game->genre = implode(",",$tmp_genre);
-		$game->save();
+        $game->genre = implode(",",$tmp_genre);
+        $game->save();
+        $game = Game::where('name', $request->get('name'))->first();
+        if ($request->file('image') != null) {
+            for($i = 0;$i<count($request->file('image'));$i++){
+                $image = new Image;
+                $name= uniqid().$request->file('image')[$i]->getClientOriginalName();
+			    $request->file('image')[$i]->move(public_path().'/images/', $name);
+                $image->url = '/images/'.$name;
+                $image->game_id = $game->game_id;
+                $image->save();
+            }
+        }
 		return redirect('admin/game');
     }
 
@@ -90,6 +102,7 @@ class GameController extends Controller
      */
     public function edit($id)
     {
+        $image = Image::where('game_id', $id)->get();
         $game = Game::where('game_id', $id)->first();
 		$tmp_platform = explode(',', $game->platform);
 		$tmp_genre = explode(',', $game->genre);
@@ -114,8 +127,7 @@ class GameController extends Controller
 				}
 		}
 		}
-		
-		return view('admin.game.edit',compact('game','checkplatform','checkgenre','platform','genre'));
+		return view('admin.game.edit',compact('game','checkplatform','checkgenre','platform','genre','image'));
     }
 
     /**
@@ -137,8 +149,23 @@ class GameController extends Controller
 			'genre' => 'required',
 			'developer' => 'required'
 		]
-		);
-		
+        );
+        $delImage=$request->get('delImage');
+        $arr=explode(",",$delImage);
+        for($i=0;$i<count($arr)-1;$i++){
+            $tmpDel=Image::where('img_id', $arr[$i])->first();
+            Image::where('img_id', $arr[$i])->delete();
+        }
+        if ($request->file('image') != null) {
+            for($i = 0;$i<count($request->file('image'));$i++){
+                $image = new Image;
+                $name= uniqid().$request->file('image')[$i]->getClientOriginalName();
+			    $request->file('image')[$i]->move(public_path().'/images/', $name);
+                $image->url = '/images/'.$name;
+                $image->game_id = $id;
+                $image->save();
+            }
+        }
         $game = Game::where('game_id', $id)->first();
 		$game->name = $request->get('name');
 		$game->rating = $request->get('rating');
@@ -148,9 +175,14 @@ class GameController extends Controller
 		$tmp_genre = $request->input('genre');
 		$game->developer = $request->get('developer');
 		$game->platform = implode(",",$tmp_platform);
-		$game->genre = implode(",",$tmp_genre);
+        $game->genre = implode(",",$tmp_genre);
+        if ($request->file('poster_url') != null) {
+            $name= uniqid().$request->file('poster_url')->getClientOriginalName();
+			$request->file('poster_url')->move(public_path().'/images/', $name);
+			$game->poster_url = '/images/'.$name;
+        }
 		Game::where('game_id', $id)
-		->update(['name' => $game->name,'rating' => $game->rating,'platform' => $game->platform,'detail' => $game->detail,'genre' => $game->genre,'developer' => $game->developer,'age_limit' => $game->age_limit]);
+		->update(['name' => $game->name,'rating' => $game->rating,'platform' => $game->platform,'detail' => $game->detail,'genre' => $game->genre,'developer' => $game->developer,'age_limit' => $game->age_limit,'poster_url' => $game->poster_url]);
 		return redirect('admin/game');
     }
 
@@ -162,6 +194,7 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
+        Image::where('game_id', $id)->delete();
         Chapters::where('game_id', $id)->delete();
 		Game::where('game_id', $id)->delete();
 		return redirect('admin/game');
