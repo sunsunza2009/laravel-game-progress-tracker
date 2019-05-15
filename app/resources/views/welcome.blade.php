@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-        <title>Laravel</title>
+        <title>GameRoom</title>
 		
 		<!-- Bootstrap Core CSS -->
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -66,7 +66,7 @@
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1>GameRoom</h1>
-                        <h3>Game</h3>
+                        <h3>Track your game progress</h3>
                         <hr class="intro-divider">
                     </div>
                 </div>
@@ -86,8 +86,8 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr>
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Find Games</h2>
-                    <p class="lead">--<br>--</p>
+                    <h2 class="section-heading">Save progress</h2>
+                    <p class="lead">Save game progress to continue game.</p>
                 </div> 
             </div>
         </div>
@@ -103,8 +103,8 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr>
                     <div class="clearfix"></div>
-					<h2 class="section-heading">Save Chapters</h2>
-                    <p class="lead">--<br>--</p>
+					<h2 class="section-heading">Age Verify</h2>
+                    <p class="lead">Verify your age for accessing adult content.</p>
                 </div>            
             </div>
         </div>
@@ -126,11 +126,7 @@
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                           <a href="#contact">ติดต่อเรา</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li>
-						   <a href="https://github.com/laravel/laravel">GitHub</a>    
+						   <a href="https://github.com/sunsunza2009/laravel-game-progress-tracker">GitHub</a>    
                         </li>
                     </ul>
                   <!--  <p class="copyright text-muted small">Copyright &copy; ZuGeTor. All Rights Reserved</p>  -->
