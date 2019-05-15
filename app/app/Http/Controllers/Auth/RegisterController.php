@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'gender' => ['required'],
+            'bod' => ['required'],
         ]);
     }
 
@@ -75,7 +76,7 @@ class RegisterController extends Controller
 			'player_id' => $user->id,
 			'name' => $data['name'],
 			'gender' => $data['gender'],
-			'birth_date' => "2019-05-01",
+			'birth_date' => $data['bod'],
 			'email' => $data['email'],
 			'photo' => ""
 		]);
