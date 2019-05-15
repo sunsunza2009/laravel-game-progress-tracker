@@ -159,8 +159,8 @@ body{
 				<div> 
 				<button type="submit" class="btn btn-success"><h4>Add progress</h4></button>
 				</form>
-                <br>
-        <table class="table">
+                <div style="padding-top: 10px;"></div>
+        <table class="table" style="padding-top: 10px;">
                             <thead>
                                 <tr>
                                     <th scope="col">Chapter Name</th>
@@ -193,6 +193,16 @@ body{
 </div>
 <!-- /.container -->
 <script>
+var images=new Array('https://images5.alphacoders.com/438/438934.jpg','http://eskipaper.com/images/bioshock-infinite-screenshot-1.jpg','http://www.glittergraphics.org/img/113/1137019/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137022/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137033/bioshock-infinite-wallpaper-1920x1080.png','http://www.glittergraphics.org/img/113/1137059/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137068/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137094/bioshock-infinite-wallpaper-1920x1080.jpg');
+var i=0;
+function changePic(){
+	console.log("Changing Picture");
+	if(i >= images.length)
+		i = 0;
+	$(".parallax").css('background-image','url('+images[i]+')');		
+	i++;
+}
+setInterval(changePic,5000);
 function deleteFav(id){
 	
 		$.get( "/api/fav/"+id+"/del", function( data ) {
