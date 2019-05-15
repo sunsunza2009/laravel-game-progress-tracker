@@ -126,7 +126,7 @@
 				<input type="file" name="poster_url" class="form-control">
 				</div>
 				<div> 
-				<button type="submit" class="btn btn-success"><h4>add game</h4></button>
+				<button type="submit" class="btn btn-success"><h4>Add game</h4></button>
 				</form>
                 </div>
             </div>

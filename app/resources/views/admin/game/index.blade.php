@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+<script src="/js/confirm.js"></script>
 @section('content')
 <div class="container">
     <div class="row">
@@ -62,14 +63,13 @@
                                             class="btn btn-warning">Edit</a></td>
 
                                     <td>
-                                        <form action="{{ route('game.destroy',$row->game_id) }}" method="post">
+                                        <form action="{{ route('game.destroy',$row->game_id) }}" method="post" onsubmit="event.preventDefault(); check(this);">
                                             @csrf
                                             @method("DELETE")
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
-                                    <td><a href="{{ route('chapters.show',$row->game_id) }}" class="btn btn-primary">Add
-                                            chapter</a></td>
+                                    <td><a href="{{ route('chapters.show',$row->game_id) }}" class="btn btn-primary">Manage chapter</a></td>
                                 </tr>
                             </tbody>
                             @endforeach
