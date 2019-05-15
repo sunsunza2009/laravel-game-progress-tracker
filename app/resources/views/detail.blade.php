@@ -126,9 +126,9 @@ body{
             <div class="col-lg" style="padding-top:120px;padding-left:40px">
             <span class="dot"><h1>{{$gamedetail->rating}}/10</h1></span><br><br><br>
             @if ($isFav === 1)
-            <a href="" onclick="deleteFav({{$gamedetail->game_id}})" class="btn btn-danger btn-lg">Remove</a>
+            <button href="" onclick="deleteFav({{$gamedetail->game_id}})" class="btn btn-danger btn-lg">Remove</button>
             @else
-            <a href="" onclick="addFav({{$gamedetail->game_id}})" class="btn btn-success btn-lg">Follow</a>
+            <button href="" onclick="addFav({{$gamedetail->game_id}})" class="btn btn-success btn-lg">Follow</button>
             @endif
             </div>
             </div>
@@ -157,7 +157,7 @@ body{
 				<input type="text" name="comment" class="form-control">
 				</div>
 				<div> 
-				<button type="submit" class="btn btn-success"><h4>add progress</h4></button>
+				<button type="submit" class="btn btn-success"><h4>Add progress</h4></button>
 				</form>
                 <br>
         <table class="table">
@@ -197,12 +197,14 @@ function deleteFav(id){
 	
 		$.get( "/api/fav/"+id+"/del", function( data ) {
 			console.log(data);
+			location.reload(); 
 		});
 }
 function addFav(id){
 	
 		$.get( "/api/fav/"+id+"/add", function( data ) {
 			console.log(data);
+			location.reload(); 
 		});
 }
 </script>

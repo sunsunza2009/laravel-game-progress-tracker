@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	if(Auth::check()){
+		return redirect('/home');
+	} else {
+		return view('welcome');
+	}
 });
 
 
@@ -31,6 +35,7 @@ Route::group(['prefix' => 'api'], function(){
     Route::get('/fav/{id}/add', 'FavController@store');
     Route::get('/fav/{id}/del', 'FavController@destroy');
 	Route::get('/game', 'GameApiController@game');
+	Route::get('/search/{txt}', 'GameApiController@search');
 });
 
 

@@ -40,6 +40,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<input class="nav-link form-control" type="text" placeholder="Search" oninput="search(this)">
+						</li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

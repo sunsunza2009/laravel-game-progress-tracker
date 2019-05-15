@@ -2,10 +2,12 @@ function init() {
 	clear_list();
 	$.get( "/api/fav", function( data ) {
 		if(data.length > 0){
+			$("h2").html("My Game");
 			for(var i=0;i<data.length;i++){
 				add_list(data[i],platform(data[i]['platform']),"Remove",false);
 			}
 		} else {
+			$("h2").html("Game List");
 			$("#alert").html('<div class="alert alert-danger" role="alert">Please add some game.</div>');
 			$.get( "/api/game", function( data ) {
 				for(var i=0;i<data.length;i++){
@@ -14,6 +16,19 @@ function init() {
 			});		
 		}
 	});
+}
+function search(el){
+	if($(el).val() != ""){
+		clear_list();
+		$("h2").html("Game List");
+		$.get( "/api/search/"+$(el).val(), function( data ) {
+			for(var i=0;i<data.length;i++){
+				add_list(data[i],platform(data[i]['platform']),"Follow",true);
+			}
+		});
+	} else {
+		init();
+	}
 }
 function clear_list(){
 	$("#alert").html("");

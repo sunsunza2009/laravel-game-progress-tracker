@@ -1,4 +1,4 @@
-.card:hover {
+.card-columns .card:hover {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);

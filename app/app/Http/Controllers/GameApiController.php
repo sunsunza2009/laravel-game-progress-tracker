@@ -10,7 +10,7 @@ use DB;
 
 class GameApiController extends Controller
 {	
-	 public function game()
+	public function game()
     {
 		if (!Auth::guest()) {			
       /*$player = player::where('player_id',$user_id)->first();
@@ -23,4 +23,15 @@ class GameApiController extends Controller
         }
 		
     }
+	
+	public function search($txt)
+    {
+		$txt = '%'.$txt.'%';
+		if (!Auth::guest()) {			
+			$gameList = DB::select("SELECT * FROM games WHERE ( name like (?) OR platform like (?) OR genre like (?) OR developer like (?) )",[$txt,$txt,$txt,$txt]);
+			return $gameList;
+        } else {
+			abort(403, 'Unauthorized action.');
+        }
+	}
 }
