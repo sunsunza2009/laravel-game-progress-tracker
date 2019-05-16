@@ -66,7 +66,11 @@ CREATE TABLE `favorite` (
   KEY `fk_favorite_games1_idx` (`game_id`),
   CONSTRAINT `fk_favorite_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_favorite_players1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+<<<<<<< HEAD
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+=======
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+>>>>>>> 43172b296670872d0511fd847ccd8e0d32c925eb
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,6 +239,7 @@ CREATE TABLE `progress` (
   KEY `fk_progress_chapters1_idx` (`chapter_id`,`game_id`),
   CONSTRAINT `fk_progress_chapters1` FOREIGN KEY (`chapter_id`, `game_id`) REFERENCES `chapters` (`chapter_id`, `game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_progress_player1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -289,4 +294,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
 -- Dump completed on 2019-05-16 15:04:35
+
