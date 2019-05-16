@@ -171,14 +171,30 @@ body{
 				<button type="submit" class="btn btn-success"><h4>Add progress</h4></button>
 				</form>
                 <div style="padding-top: 10px;"><div class="progress">
-                @if (empty($lastProg->progress_percent))
+                @if (empty($lastProg))
                                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
                                             0% Game Completed!
                                         </div>             
                 @endif
-                @if (!empty($lastProg->progress_percent))
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$lastProg->progress_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$lastProg->progress_percent}}%">
-                                            {{$lastProg->progress_percent}}% Game Completed!
+                @if (!empty($lastProg))
+					@if ($lastProg >= 0 && $lastProg < 25 )
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="{{$lastProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$lastProg}}%">
+					@endif
+					@if ($lastProg >= 25 && $lastProg < 50 )
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="{{$lastProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$lastProg}}%">
+					@endif
+					@if ($lastProg >= 50 && $lastProg < 75 )
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="{{$lastProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$lastProg}}%">
+					@endif
+					@if ($lastProg >= 75)
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{$lastProg}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$lastProg}}%">
+					@endif
+					@if ($lastProg < 50 )
+                                        <div class="text-dark">{{$lastProg}}% Game Completed!</div>
+					@endif
+					@if ($lastProg >= 50 )
+                                        <div class="text-white">{{$lastProg}}% Game Completed!</div>
+					@endif
                                         </div>             
                 @endif
                 </div></div>

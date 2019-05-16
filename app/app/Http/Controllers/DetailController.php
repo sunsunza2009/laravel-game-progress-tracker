@@ -93,7 +93,7 @@ class DetailController extends Controller
         $chapterdetail = DB::select("SELECT c.* FROM chapters c LEFT OUTER JOIN progress p ON p.chapter_id = c.chapter_id AND p.player_id = ? WHERE p.chapter_id is NULL AND c.game_id = ?",[$user_id,$id]);
         $chapterdetail1 = Chapters::where('game_id', $id)->get();
         $progress = Progress::where('game_id', $id)->where('player_id', $user_id)->get();
-        $lastProg=$progress->last();
+        $lastProg= round(((count($chapterdetail1)-count($chapterdetail))/count($chapterdetail1))*100, 0);
         foreach ($progress as $p) {
             foreach ($chapterdetail1 as $c) {
                 if($p->chapter_id == $c->chapter_id){
@@ -104,10 +104,10 @@ class DetailController extends Controller
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
-			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','otherPic','first'));
+			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','otherPic','first','lastProg'));
         }else{
 			$status = 'You\'re too young to view this content.';
-            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status','otherPic','first'));
+            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status','otherPic','first','lastProg'));
         }
     }
 
