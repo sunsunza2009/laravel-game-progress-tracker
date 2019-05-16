@@ -7,3 +7,23 @@
   -webkit-transition: 300ms;
   transition: 300ms;
 }
+.morning{
+	background:url('https://i.imgur.com/A1NcHp7.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+.day{
+	background:url('https://i.imgur.com/zZElC7A.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+.evening{
+	background:url('https://i.imgur.com/u20pMr0.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+.night{
+	background:url('https://i.imgur.com/oXMtSkv.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}

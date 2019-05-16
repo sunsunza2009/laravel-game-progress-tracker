@@ -62,7 +62,29 @@ function viewDetail(id){
 	//$.get( "/api/detail/"+id);
 	window.location.href = "/detail/"+id;
 }
+function ChangeBG() {
+	var d = new Date();
+	var n = d.getHours();
+	console.log(n);
+	if(n >= 3 && n < 8){
+		$('main').addClass("morning");
+		$("h2").css("color","#c2280d");
+	}
+	if(n >= 8 && n < 15){
+		$('main').addClass("day");
+		$("h2").css("color","#874027");
+	}
+	if(n >= 15 && n < 17){
+		$('main').addClass("evening");
+		$("h2").css("color","#7d4e3d");
+	}
+	if(n > 17){
+		$('main').addClass("night");
+		$("h2").css("color","#FFFFFF");
+	}
+}
 $( document ).ready(function() {
 	console.log("Ready");
 	init();
+	ChangeBG();
 });
