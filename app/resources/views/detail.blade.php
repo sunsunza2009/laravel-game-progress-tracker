@@ -148,7 +148,7 @@ body{
         <!-- /.row -->
 		<br>
         @if ($isFav === 1)
-        <form method="post" action="{{ route('detail.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('detail.store') }}">
 				{{ csrf_field() }}
 				<div class="form-group">
 				<label><h4>Choose Chapter</h4></label>

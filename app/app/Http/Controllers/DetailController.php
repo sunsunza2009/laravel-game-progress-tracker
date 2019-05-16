@@ -66,10 +66,10 @@ class DetailController extends Controller
                 }
                 $x++;
             }
-            $progress->progress_percent = ($x/count($chapter))*100;
             $progress->save();
             return redirect('detail/'.$request->get('game_id'));
         }
+		return redirect('detail/'.$request->get('game_id'));
     }
 
     /**
@@ -90,7 +90,7 @@ class DetailController extends Controller
             $playerBD = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $player->birth_date.' 00:00:00');
             $player_age = $now->diffInYears($playerBD);
         $gamedetail = Game::where('game_id', $id)->first();        
-        $chapterdetail = DB::select("SELECT c.* FROM chapters c LEFT OUTER JOIN progress p ON p.chapter_id = c.chapter_id AND p.player_id = ? WHERE p.chapter_id is NULL AND c.game_id = ?",[$id, $user_id]);
+        $chapterdetail = DB::select("SELECT c.* FROM chapters c LEFT OUTER JOIN progress p ON p.chapter_id = c.chapter_id AND p.player_id = ? WHERE p.chapter_id is NULL AND c.game_id = ?",[$user_id,$id]);
         $chapterdetail1 = Chapters::where('game_id', $id)->get();
         $progress = Progress::where('game_id', $id)->where('player_id', $user_id)->get();
         $lastProg=$progress->last();
