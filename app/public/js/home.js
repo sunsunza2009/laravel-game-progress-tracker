@@ -18,6 +18,24 @@ function init() {
 	});
 }
 function search(el){
+	if($(el).val() == "nyancat"){
+		Swal.fire({
+		  title: 'Nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan nyan',
+		  width: 600,
+		  padding: '3em',
+		  background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+		  backdrop: `
+			rgba(0,0,123,0.4)
+			url("https://sweetalert2.github.io/images/nyan-cat.gif")
+			center left
+			no-repeat
+		  `
+		}).then((result) => {
+			if (result.value) {
+				init();
+			}
+		});
+	}
 	if($(el).val() != ""){
 		clear_list();
 		$("h2").html("Game List");
