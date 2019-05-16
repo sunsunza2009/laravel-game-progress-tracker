@@ -137,14 +137,14 @@ input[type=file]{
                 @foreach ($image as $key => $value)
                 <div id="{{$value->img_id}}">
                 <img src="{{$value->url}}">
-                <button class="btn btn-danger" onclick="DelPic({{$value->img_id}})">delete Picture</button>
+                <button type="button" class="btn btn-danger" onclick="DelPic({{$value->img_id}})">delete Picture</button>
                 </div>
                 @endforeach
                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-warning">Edit</button>
                     </form>
-                    <p id="demo"></p>
+                    
                 </div>
             </div>
         </div>
@@ -154,8 +154,7 @@ input[type=file]{
 @endsection
 <script>
 function DelPic(picId) {
-    var element = document.getElementById(picId);
-    element.parentNode.removeChild(element);
-    document.getElementById("delImage").value+=picId+",";
+    $( "div" ).remove("#"+picId);
+    $("#delImage").val($("#delImage").val()+picId+",");
 }
 </script>

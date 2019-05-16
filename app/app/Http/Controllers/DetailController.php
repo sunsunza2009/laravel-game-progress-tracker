@@ -10,6 +10,7 @@ use Auth;
 use App\fav;
 use App\Progress;
 use App\Image;
+use DB;
 
 class DetailController extends Controller
 {
@@ -65,10 +66,10 @@ class DetailController extends Controller
                 }
                 $x++;
             }
-            $progress->progress_percent = ($x/count($chapter))*100;
             $progress->save();
             return redirect('detail/'.$request->get('game_id'));
         }
+		return redirect('detail/'.$request->get('game_id'));
     }
 
     /**
@@ -88,11 +89,13 @@ class DetailController extends Controller
             $now = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', now());
             $playerBD = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $player->birth_date.' 00:00:00');
             $player_age = $now->diffInYears($playerBD);
-        $gamedetail = Game::where('game_id', $id)->first();
-        $chapterdetail = Chapters::where('game_id', $id)->get();
+        $gamedetail = Game::where('game_id', $id)->first();        
+        $chapterdetail = DB::select("SELECT c.* FROM chapters c LEFT OUTER JOIN progress p ON p.chapter_id = c.chapter_id AND p.player_id = ? WHERE p.chapter_id is NULL AND c.game_id = ?",[$user_id,$id]);
+        $chapterdetail1 = Chapters::where('game_id', $id)->get();
         $progress = Progress::where('game_id', $id)->where('player_id', $user_id)->get();
+        $lastProg= round(((count($chapterdetail1)-count($chapterdetail))/count($chapterdetail1))*100, 0);
         foreach ($progress as $p) {
-            foreach ($chapterdetail as $c) {
+            foreach ($chapterdetail1 as $c) {
                 if($p->chapter_id == $c->chapter_id){
                     $p->chapter_id = $c->name;
                 }
@@ -101,10 +104,10 @@ class DetailController extends Controller
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
-			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','otherPic','first'));
+			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','otherPic','first','lastProg'));
         }else{
 			$status = 'You\'re too young to view this content.';
-            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status','otherPic','first'));
+            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status','otherPic','first','lastProg'));
         }
     }
 

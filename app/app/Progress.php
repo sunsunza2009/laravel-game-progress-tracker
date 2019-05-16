@@ -10,6 +10,6 @@ class Progress extends Model
     protected $table = "progress";
 	
 	protected $fillable = [
-		'progress_id','player_id','chapter_id','game_id','comment','last_play_time','progress_percent'
+		'progress_id','player_id','chapter_id','game_id','comment','last_play_time'
 	];
 }
