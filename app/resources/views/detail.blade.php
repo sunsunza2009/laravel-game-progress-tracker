@@ -4,13 +4,24 @@
 <style>
     .parallax {
         /* The image used */
-        background-image: url("https://images5.alphacoders.com/438/438934.jpg");
+        background-image: url("{{$first}}");
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         height: 260px;
+        filter: blur(6px);
+        position: relative;
+        z-index: 0;
+        border-style: solid;
+    }
+    .para {
+        margin-top: -250px; 
+    }
+    .borderx{
         
+        border-style: solid;
+        border-width: 5px;
     }
     .dot {
   height: 110px;
@@ -87,10 +98,12 @@ body{
 @endif
 @section('content')
 
-
+<div class="borderx">
 <div class="{{ ( !empty($status) ? '' : 'parallax') }}">
+</div>
+</div>
     <!-- Heading Row -->
-    <div class="container">
+    <div class="container para">
 		@if (!empty($status))
 			<div class="container">
 				<div class="error-wrapper">
@@ -109,8 +122,8 @@ body{
             </div>
             <!-- /.col-lg-8 -->
             <div class="col-lg-7" style="padding-top:120px;padding-left:50px">
-                <h1 class="font-weight-bold">{{$gamedetail->name}}</h1>
-                <h3>({{$gamedetail->developer}})</h3><br><br><br>
+                <h1 class="text-white font-weight-bold">{{$gamedetail->name}}</h1>
+                <h3 class="text-white">({{$gamedetail->developer}})</h3><br><br><br>
                 <div class="row">
                 <div class="col-sm">
                 <h5>Genre : </h5><h6>{{$gamedetail->genre}}</h6>
@@ -190,13 +203,19 @@ body{
         @endif
 		@endif
     </div>
-</div>
+
 <!-- /.container -->
 <script>
-var images=new Array('https://images5.alphacoders.com/438/438934.jpg','http://eskipaper.com/images/bioshock-infinite-screenshot-1.jpg','http://www.glittergraphics.org/img/113/1137019/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137022/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137033/bioshock-infinite-wallpaper-1920x1080.png','http://www.glittergraphics.org/img/113/1137059/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137068/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137094/bioshock-infinite-wallpaper-1920x1080.jpg');
+//var images=new Array('https://images5.alphacoders.com/438/438934.jpg','http://eskipaper.com/images/bioshock-infinite-screenshot-1.jpg','http://www.glittergraphics.org/img/113/1137019/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137022/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137033/bioshock-infinite-wallpaper-1920x1080.png','http://www.glittergraphics.org/img/113/1137059/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137068/bioshock-infinite-wallpaper-1920x1080.jpg','http://www.glittergraphics.org/img/113/1137094/bioshock-infinite-wallpaper-1920x1080.jpg');
+var images=new Array(@foreach ($otherPic as $o)
+@if ($loop->last)
+"{{$o->url}}"
+@else    
+"{{$o->url}}",
+@endif  
+@endforeach);
 var i=0;
 function changePic(){
-	console.log("Changing Picture");
 	if(i >= images.length)
 		i = 0;
 	$(".parallax").css('background-image','url('+images[i]+')');		

@@ -9,6 +9,7 @@ use App\player;
 use Auth;
 use App\fav;
 use App\Progress;
+use App\Image;
 
 class DetailController extends Controller
 {
@@ -77,7 +78,9 @@ class DetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {       
+    {       $otherPic = Image::where('game_id', $id)->get();
+            $first=$otherPic->last()->url;
+            //$otherPic = Image::where('game_id', $id)->pluck('url')->toArray();
             $user_id = Auth::user()->id;
             $check = fav::where('game_id', $id)->where('player_id', $user_id)->get();
             $isFav = count($check);	
@@ -98,10 +101,10 @@ class DetailController extends Controller
         //dd($player_age." ".$gamedetail->age_limit);
         if($player_age >= $gamedetail->age_limit){
             //dd($player_age);
-			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress'));
+			return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','otherPic','first'));
         }else{
 			$status = 'You\'re too young to view this content.';
-            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status'));
+            return view('detail',compact('gamedetail','chapterdetail','isFav','user_id','progress','status','otherPic','first'));
         }
     }
 
