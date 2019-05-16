@@ -7,29 +7,44 @@
         <div class="col-md-8"> 
 			<div class="panel panel-default">
 			<h1 class="text-center">{{$name}}</h1>
-				<form method="post" action="{{ route('chapters.store') }}">
-					{{ csrf_field() }}
-					<div class="form-group">
-						<label for="nameText">Name</label>
-						<input type="text" name="name" class="form-control">
-						<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
-						<input type="hidden" name="method_add"  value="text" class="form-control">
-					</div>
-					<button type="submit" class="btn btn-success">Add Chapters</button>
-				</form>
-
-				<form method="post" action="{{ route('chapters.store') }}" enctype="multipart/form-data">
-					{{ csrf_field() }}
-					<div class="form-group">
-						<label for="chapters_file">File</label>
-						<input type="file" name="chapters_file" class="form-control">
-						<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
-						<input type="hidden" name="method_add"  value="file" class="form-control">
-					</div>
-					<button type="submit" class="btn btn-success">Add Chapters</button>
-				</form>
 					          
 			</div>
+		   
+		   <ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" href="#name" role="tab" data-toggle="tab">Add by Name</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#file" role="tab" data-toggle="tab">Add by File</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane fade in active" id="name">
+	<form method="post" action="{{ route('chapters.store') }}">
+	{{ csrf_field() }}
+	<div class="form-group">
+		<label for="nameText">Name</label>
+		<input type="text" name="name" class="form-control">
+		<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
+		<input type="hidden" name="method_add"  value="text" class="form-control">
+	</div>
+		<button type="submit" class="btn btn-success">Add Chapters</button>
+	</form>
+	</div>
+	<div role="tabpanel" class="tab-pane fade" id="file">
+	<form method="post" action="{{ route('chapters.store') }}" enctype="multipart/form-data">
+	{{ csrf_field() }}
+	<div class="form-group">
+	<label for="chapters_file">File</label>
+	<input type="file" name="chapters_file" class="form-control">
+	<input type="hidden" name="game_id"  value="{{$id}}" class="form-control">
+	<input type="hidden" name="method_add"  value="file" class="form-control">
+	</div>
+	<button type="submit" class="btn btn-success">Add Chapters</button>
+				</form></div>
+</div>
 		   
 <table class="table table-bordered" >
 
