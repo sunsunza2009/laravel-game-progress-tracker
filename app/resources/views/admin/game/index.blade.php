@@ -1,8 +1,11 @@
 @extends('layouts.app')
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <script src="/js/confirm.js"></script>
+<style>
+body {background-image:url("/images/Horizon Zero Dawn™_20190517030732.jpg");}
+</style>
 @section('content')
-<div class="container">
+<div class="container bg-white">
     <div class="row">
         <div class="col-md-offset-1">
             <div class="panel panel-default">

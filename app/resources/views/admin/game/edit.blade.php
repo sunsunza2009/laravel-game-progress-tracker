@@ -5,6 +5,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
   
   <style type="text/css">
+body{background-image:url("/images/Horizon Zero Dawn™_20190517024807.jpg")}
 
 input[type=file]{
 
@@ -23,7 +24,7 @@ input[type=file]{
 
 </style>
 @section('content')
-<div class="container">
+<div class="container bg-white">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">

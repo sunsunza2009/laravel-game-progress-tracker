@@ -1,8 +1,11 @@
 @extends('layouts.app')
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <script src="/js/confirm.js"></script>
+<style>
+body {background-image:url("/images/Horizon Zero Dawn™_20190517025520.jpg");}
+</style>
 @section('content')
-<div class="container">
+<div class="container bg-white">
 	<div class="row justify-content-center">
         <div class="col-md-8"> 
 			<div class="panel panel-default">
@@ -12,7 +15,7 @@
 		   
 		   <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" href="#name" role="tab" data-toggle="tab">Add by Name</a>
+    <a class="nav-link" href="#name" role="tab" data-toggle="tab">Add by Name</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#file" role="tab" data-toggle="tab">Add by File</a>
