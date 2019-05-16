@@ -66,7 +66,7 @@ CREATE TABLE `favorite` (
   KEY `fk_favorite_games1_idx` (`game_id`),
   CONSTRAINT `fk_favorite_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_favorite_players1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +75,7 @@ CREATE TABLE `favorite` (
 
 LOCK TABLES `favorite` WRITE;
 /*!40000 ALTER TABLE `favorite` DISABLE KEYS */;
+INSERT INTO `favorite` VALUES (6,6,1);
 /*!40000 ALTER TABLE `favorite` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +97,7 @@ CREATE TABLE `games` (
   `developer` varchar(100) DEFAULT NULL,
   `poster_url` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`game_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +124,7 @@ CREATE TABLE `image` (
   PRIMARY KEY (`img_id`,`game_id`),
   KEY `fk_image_games1_idx` (`game_id`),
   CONSTRAINT `fk_image_games1` FOREIGN KEY (`game_id`) REFERENCES `games` (`game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +133,7 @@ CREATE TABLE `image` (
 
 LOCK TABLES `image` WRITE;
 /*!40000 ALTER TABLE `image` DISABLE KEYS */;
-INSERT INTO `image` VALUES (1,'/images/5cdc9a89a76c1133845-games-review-the-witcher-3-wild-hunt-review-image2-lcwkcjplz3.jpg',10),(2,'/images/5cdc9a89c7c48image (1).jpg',10),(3,'/images/5cdc9a89daa57image.jpg',10),(4,'/images/5cdc9a8a22338the-witcher-3-wild-hunt_1.jpg',10),(5,'/images/5cdca8d23815a2783.10a.jpg',1),(6,'/images/5cdca8d254da0gow.jpg',1),(7,'/images/5cdca8e6a6bd539f9e8a167f05023fc4966f1cacd811066f3382a.jpg',2),(8,'/images/5cdca8e6ca1abijGzB.jpg',2),(12,'/images/5cdca91239ee0Uncharted_4_-_E3_2015_screenshot_-_7.0.0.jpg',3),(13,'/images/5cdca9124fa42uncharted-4-leap-mouse-pad-extended-gaming-custom.jpg',3),(14,'/images/5cdca9204cc936cPvyy3yk3cSTCpinJsxre-480-80.jpg',4),(15,'/images/5cdca9206593c2019_03_06_17.44.49_Screenshot.0.png',4),(16,'/images/5cdca9207df12Devil-May-Cry-v-steelbook.jpg',4),(17,'/images/5cdca93949aa1best_of_2019_6_winter.jpg',5),(18,'/images/5cdca93a0a837metroexoduswinter.jpg',5),(19,'/images/5cdca94ae3f5asnbvcpM7FfYVTzyp9oDtRG.jpg',6),(20,'/images/5cdca94b11f0awebsite_mini_0000_mini3.jpg',6),(21,'/images/5cdca95680e981-dutch.png',7),(22,'/images/5cdca95699c8ered_dead_redemption_2_-_publicity_-_h_2018.jpg',7),(23,'/images/5cdca956bd002red-dead-redemption-2-review-29850-1920x1080.jpg',7);
+INSERT INTO `image` VALUES (1,'/images/5cdc9a89a76c1133845-games-review-the-witcher-3-wild-hunt-review-image2-lcwkcjplz3.jpg',10),(2,'/images/5cdc9a89c7c48image (1).jpg',10),(5,'/images/5cdca8d23815a2783.10a.jpg',1),(6,'/images/5cdca8d254da0gow.jpg',1),(7,'/images/5cdca8e6a6bd539f9e8a167f05023fc4966f1cacd811066f3382a.jpg',2),(8,'/images/5cdca8e6ca1abijGzB.jpg',2),(12,'/images/5cdca91239ee0Uncharted_4_-_E3_2015_screenshot_-_7.0.0.jpg',3),(13,'/images/5cdca9124fa42uncharted-4-leap-mouse-pad-extended-gaming-custom.jpg',3),(14,'/images/5cdca9204cc936cPvyy3yk3cSTCpinJsxre-480-80.jpg',4),(15,'/images/5cdca9206593c2019_03_06_17.44.49_Screenshot.0.png',4),(16,'/images/5cdca9207df12Devil-May-Cry-v-steelbook.jpg',4),(17,'/images/5cdca93949aa1best_of_2019_6_winter.jpg',5),(18,'/images/5cdca93a0a837metroexoduswinter.jpg',5),(19,'/images/5cdca94ae3f5asnbvcpM7FfYVTzyp9oDtRG.jpg',6),(20,'/images/5cdca94b11f0awebsite_mini_0000_mini3.jpg',6),(21,'/images/5cdca95680e981-dutch.png',7),(22,'/images/5cdca95699c8ered_dead_redemption_2_-_publicity_-_h_2018.jpg',7),(23,'/images/5cdca956bd002red-dead-redemption-2-review-29850-1920x1080.jpg',7);
 /*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +235,7 @@ CREATE TABLE `progress` (
   KEY `fk_progress_chapters1_idx` (`chapter_id`,`game_id`),
   CONSTRAINT `fk_progress_chapters1` FOREIGN KEY (`chapter_id`, `game_id`) REFERENCES `chapters` (`chapter_id`, `game_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_progress_player1` FOREIGN KEY (`player_id`) REFERENCES `players` (`player_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,6 +244,7 @@ CREATE TABLE `progress` (
 
 LOCK TABLES `progress` WRITE;
 /*!40000 ALTER TABLE `progress` DISABLE KEYS */;
+INSERT INTO `progress` VALUES (16,6,19,1,'Ares is OP!!','2019-05-16 13:29:35',100),(17,6,10,1,'Ares is OP!!','2019-05-16 13:29:35',100);
 /*!40000 ALTER TABLE `progress` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,4 +289,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-16  1:11:20
+-- Dump completed on 2019-05-16 15:04:35

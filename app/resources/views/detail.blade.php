@@ -14,14 +14,13 @@
         position: relative;
         z-index: 0;
         border-style: solid;
+        transform: scale(1.1);
     }
     .para {
         margin-top: -250px; 
     }
     .borderx{
-        
-        border-style: solid;
-        border-width: 5px;
+        overflow: hidden;
     }
     .dot {
   height: 110px;
@@ -29,8 +28,7 @@
   background-color: #ffff;
   border-radius: 50%;
   display: inline-block;
-  padding-top:30px;
-  padding-left:15px;
+  padding-top:25%;
 }
 
 </style>
@@ -137,7 +135,7 @@ body{
             <h6>{{$gamedetail->detail}}</h6>
             </div>
             <div class="col-lg" style="padding-top:120px;padding-left:40px">
-            <span class="dot"><h1>{{$gamedetail->rating}}/10</h1></span><br><br><br>
+            <span class="dot"><h1 class="text-center">{{$gamedetail->rating}}/10</h1></span><br><br><br>
             @if ($isFav === 1)
             <button href="" onclick="deleteFav({{$gamedetail->game_id}})" class="btn btn-danger btn-lg">Remove</button>
             @else
@@ -172,14 +170,24 @@ body{
 				<div> 
 				<button type="submit" class="btn btn-success"><h4>Add progress</h4></button>
 				</form>
-                <div style="padding-top: 10px;"></div>
+                <div style="padding-top: 10px;"><div class="progress">
+                @if (empty($lastProg->progress_percent))
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                            0% Game Completed!
+                                        </div>             
+                @endif
+                @if (!empty($lastProg->progress_percent))
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{$lastProg->progress_percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{$lastProg->progress_percent}}%">
+                                            {{$lastProg->progress_percent}}% Game Completed!
+                                        </div>             
+                @endif
+                </div></div>
         <table class="table" style="padding-top: 10px;">
                             <thead>
                                 <tr>
                                     <th scope="col">Chapter Name</th>
                                     <th scope="col">Comment</th>
                                     <th scope="col">Save Time</th>
-                                    <th scope="col">Progress percent</th>
                                 </tr>
                             </thead>
                             @foreach($progress as $row)
@@ -188,7 +196,6 @@ body{
                                     <td scope="row">{{ $row->chapter_id }}</td>
                                     <td scope="row">{{ $row->comment }}</td>
                                     <td scope="row">{{ $row->last_play_time }}</td>
-                                    <td scope="row">{{ $row->progress_percent }}</td>
                                     <td>
                                         <form action="{{ route('detail.destroy',$row->progress_id) }}" method="post">
                                             @csrf
